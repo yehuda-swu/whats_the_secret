@@ -8,7 +8,9 @@ A self contained website for the StandWithUs UK Explore programme. Pupils work i
 2. The team enters a name and researches its topic using the original workshop material and further sources.
 3. Pupils answer **five questions**. Each question becomes one presentation slide: the challenge, the breakthrough, the people, the impact and the secret.
 4. For each question, pupils can upload a picture they saved or made, or paste a public image URL. They can add a caption and source.
-5. Pupils select **Download presentation**, send the downloaded HTML file to the teacher and the teacher opens it in a browser. Arrow keys switch slides. The presentation can be printed or saved to PDF.
+5. Pupils select **Download presentation**, then select **Email Eden** or **Email Eliana**. Their email application opens a prepared message. Pupils must attach the downloaded `.html` presentation file before sending. The Educator opens it in a browser. Arrow keys switch slides, and the presentation can be printed or saved to PDF.
+
+The website now uses considerably larger type and controls, visible keyboard focus and a **Reset activity** button. Reset asks for confirmation before erasing the saved work on that device.
 
 No pupil logins, database or server are required. Pupils use **one device per group**. Answers are automatically saved in that browser. Downloaded presentations contain the complete question text, pupil answers, uploaded images and captions.
 
@@ -26,14 +28,14 @@ No pupil logins, database or server are required. Pupils use **one device per gr
 Suggested GitHub commit message:
 
 ```
-Simplify What's the Secret to five questions and image presentations
+Increase accessibility and add activity reset and educator email buttons
 ```
 
 If working with Git locally in an existing repository:
 
 ```bash
 git add .
-git commit -m "Simplify What's the Secret to five questions and image presentations"
+git commit -m "Increase accessibility and add activity reset and educator email buttons"
 git push origin main
 ```
 
@@ -49,7 +51,9 @@ Pictures are reduced in size when uploaded so the presentation and project are m
 
 Browser storage can be cleared, and some school browsers may limit storage. Encourage pupils to download the editable project before finishing if they expect to work on it later.
 
-This is a static website, so team members do not edit the same project live from separate devices. It also does not automatically send work to the teacher. Use the school's usual learning platform or permitted method for collecting files.
+This is a static website, so team members do not edit the same project live from separate devices. It also does not automatically send work to an Educator. The built in email buttons open a prepared message addressed to **Eden (edeni@standwithus.com)** or **Eliana (egarfunkel@standwithus.com)**. Pupils must attach the downloaded HTML file themselves.
+
+The form also accepts an optional online presentation link, for teams who have already uploaded their file to an approved platform and enabled appropriate sharing permissions. GitHub Pages cannot itself create a public link to a pupil's uploaded pictures or finished presentation. The website does not send work to a server.
 
 ## Educational material and credits
 
@@ -61,7 +65,7 @@ The images and branding included in the website were supplied with the original 
 
 - `index.html`: simplified application layout
 - `script.js`: five questions, image uploads and standalone presentation export
-- `style.css`: website styles, including mobile layout
+- `style.css`: large accessible text, spacious controls, clear focus states and mobile layout
 - `research.js`: original supplied research text
 - `assets/`: original supplied workshop visuals and logos
 - `TEACHER_GUIDE.md`: short educator instructions

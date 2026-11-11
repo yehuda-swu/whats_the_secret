@@ -41,7 +41,13 @@ Each question accepts one uploaded image or image link. A team can save an onlin
 
 **Recommended:** Ask pupils to use **Upload picture**. This includes the uploaded picture directly inside the presentation file. Image links may not work offline or if a website blocks access. Pupils should include an image caption or credit.
 
-Each team selects **Download presentation**. They should submit the downloaded `.html` file through your normal school platform, or transfer it to the classroom computer according to school policy. Open the file in a browser and use the arrows to move through the slides. You can also use the **Print or PDF** option to create a PDF copy.
+Each team selects **Download presentation**. Then they choose **Email Eden** (`edeni@standwithus.com`) or **Email Eliana** (`egarfunkel@standwithus.com`). This opens a prepared email, but the pupil must **attach the downloaded `.html` file before sending**. If a team has uploaded its work to a school approved file platform, it can paste its shareable link in the optional field and then email that link instead. Please check that the link grants access to the intended Educator.
+
+The website does not create public links or send emails automatically, and no pupil content is uploaded to the activity website. This protects pupils' work and keeps the GitHub Pages site simple.
+
+You can also collect the downloaded file through your normal school platform or transfer it to the classroom computer according to school policy. Open the file in a browser and use the arrows to move through the slides. You can also use the **Print or PDF** option to create a PDF copy.
+
+The redesigned site uses larger fonts, larger buttons and visible keyboard focus states. **Reset activity** appears on the project screen and home page. It asks for confirmation before clearing the current group's work from the device. Save files before resetting, especially when several groups share a device.
 
 If they want to edit the work later, ask them to select **Save editable project** as well. This produces a `.json` backup.
 
