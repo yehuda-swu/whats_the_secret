@@ -1,0 +1,54 @@
+{
+  "format": "explore-secret-board",
+  "version": 1,
+  "board": {
+    "id": "example_board",
+    "team": "Example Team",
+    "members": "",
+    "theme": "water",
+    "savedAt": 1762873200000,
+    "conclusion": "Our research suggests that water scarcity encouraged farmers and engineers to experiment, cooperate and develop solutions that could be used beyond Israel. We would also need independent evidence to measure the impact.",
+    "cards": [
+      {
+        "id": "example_1",
+        "col": "challenge",
+        "title": "Farming with scarce water",
+        "detail": "Parts of Israel have low rainfall. Farmers needed practical ways to use limited water.",
+        "source": "Netafim, About Us",
+        "url": "https://www.netafim.com/en/netafim-irrigation-company-about-us/"
+      },
+      {
+        "id": "example_2",
+        "col": "breakthrough",
+        "title": "Precision irrigation",
+        "detail": "Netafim began in 1965 and developed methods to supply water more directly to crops.",
+        "source": "Netafim, About Us",
+        "url": "https://www.netafim.com/en/netafim-irrigation-company-about-us/"
+      },
+      {
+        "id": "example_3",
+        "col": "people",
+        "title": "Farmers and agronomists",
+        "detail": "Netafim describes itself as being founded by farmers and innovators who understood the farming problem.",
+        "source": "Netafim, About Us",
+        "url": "https://www.netafim.com/en/netafim-irrigation-company-about-us/"
+      },
+      {
+        "id": "example_4",
+        "col": "impact",
+        "title": "Growing more with less",
+        "detail": "Precision irrigation is designed to help farmers grow crops while managing water use. Claims about savings should be checked.",
+        "source": "Netafim, About Us",
+        "url": "https://www.netafim.com/en/netafim-irrigation-company-about-us/"
+      },
+      {
+        "id": "example_5",
+        "col": "secret",
+        "title": "A problem can spark an idea",
+        "detail": "Practical needs, cooperation and experimentation may help explain the development of useful innovations.",
+        "source": "Netafim, About Us",
+        "url": "https://www.netafim.com/en/netafim-irrigation-company-about-us/"
+      }
+    ]
+  }
+}

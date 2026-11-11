@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071c34">
+  <meta name="description" content="What's the Secret? An interactive Explore research and innovation workshop for students.">
+  <title>What's the Secret? | Explore Innovation Lab</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <header class="site-header" id="site-header">
+    <div class="brandbar">
+      <button class="logo-wrap swu-wrap" type="button" data-nav="home" aria-label="Home"><img src="assets/swu_logo.png" alt="StandWithUs UK"></button>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <img class="explore-logo" src="assets/explore_logo.png" alt="Explore, Israel's story. Your story.">
+      <div class="brand-title"><span>EXPLORE LAB</span><small>WHAT'S THE SECRET?</small></div>
+    </div>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <button type="button" data-nav="home" class="nav-button active">The challenge</button>
+      <button type="button" data-nav="workspace" class="nav-button">Our thought board</button>
+      <button type="button" data-nav="teacher" class="nav-button">Teacher studio</button>
+    </nav>
+    <button type="button" id="mobile-menu" class="mobile-menu" aria-expanded="false" aria-controls="mobile-links" aria-label="Open navigation">☰</button>
+    <div class="save-indicator"><span class="save-dot"></span><span id="save-status">Ready to explore</span></div>
+  </header>
+  <nav class="mobile-links hidden" id="mobile-links" aria-label="Mobile navigation">
+    <button type="button" data-nav="home">The challenge</button><button type="button" data-nav="workspace">Our thought board</button><button type="button" data-nav="teacher">Teacher studio</button>
+  </nav>
+
+  <main>
+    <section class="view" id="view-home" aria-label="The challenge">
+      <div class="hero">
+        <div class="hero-photo" role="img" aria-label="Tel Aviv skyline"></div>
+        <div class="hero-mesh" aria-hidden="true"></div>
+        <div class="hero-inner container">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="signal-dot"></span> EXPLORE · THE INNOVATION CHALLENGE</div>
+            <h1>WHAT'S<br>THE <em>SECRET<span>?</span></em></h1>
+            <p class="hero-subtitle">A small country. Big challenges. Remarkable ideas.</p>
+            <p class="hero-text">What helped Israel become a centre for invention and innovation? Your team is about to investigate, connect the evidence and teach the class what you discover.</p>
+            <div class="hero-actions"><a class="btn btn-primary btn-large" href="#missions" id="start-link">Choose your mission <span aria-hidden="true">↗</span></a><button type="button" class="btn btn-glass" data-nav="teacher">I'm the teacher <span aria-hidden="true">↗</span></button></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true"><div class="blueprint-ring ring-one"></div><div class="blueprint-ring ring-two"></div><div class="hero-core"><span>?</span><small>DISCOVER<br>CONNECT<br>EXPLAIN</small></div><div class="orb-label label-one">01 / QUESTION</div><div class="orb-label label-two">02 / RESEARCH</div><div class="orb-label label-three">03 / REVEAL</div></div>
+        </div>
+        <div class="hero-foot container"><span><b>01</b> RESEARCH</span><span class="mini-line"></span><span><b>02</b> CREATE</span><span class="mini-line"></span><span><b>03</b> TEACH</span><span class="hero-scroll">SCROLL TO BEGIN ↓</span></div>
+      </div>
+      <div class="container challenge-body">
+        <div class="section-top"><div><div class="kicker">YOUR BRIEF</div><h2>Follow the clues. <span>Find the secret.</span></h2></div><p>One mission per group. Every group uncovers a different part of Israel's story.</p></div>
+        <div class="process-grid">
+          <div class="process-item"><span class="process-number">01</span><div class="process-icon">⌕</div><h3>Investigate</h3><p>Explore the supplied research pack and seek reliable evidence online.</p></div>
+          <div class="process-item"><span class="process-number">02</span><div class="process-icon">▦</div><h3>Build your board</h3><p>Collect discoveries as digital notes. Show the challenge, idea and impact.</p></div>
+          <div class="process-item"><span class="process-number">03</span><div class="process-icon">✦</div><h3>Reveal your secret</h3><p>Make your argument. Share your board and teach the class.</p></div>
+        </div>
+        <div class="mission-heading" id="missions"><div><div class="kicker">SIX RESEARCH MISSIONS</div><h2>Choose your investigation<span class="punctuation">.</span></h2></div><div class="mission-mini-info"><span>◷ 30 MINUTES</span><span>♙ GROUPS OF FOUR</span></div></div>
+        <div class="mission-grid" id="mission-grid"></div>
+        <div class="bottom-cta"><div><span class="kicker">ALREADY STARTED?</span><h3>Pick up where your team left off.</h3><p>Thought boards are saved automatically on this device.</p></div><button class="btn btn-outline" type="button" data-nav="workspace">Open saved thought board ↗</button></div>
+      </div>
+    </section>
+
+    <section class="view hidden" id="view-workspace" aria-label="Research workspace">
+      <div class="work-top">
+        <div class="container work-top-inner"><div class="work-title"><div class="kicker">YOUR INVESTIGATION</div><h1 id="board-heading">Our thought board</h1><div class="work-team"><span id="board-team-name"></span><span class="team-divider">•</span><span id="board-members"></span></div></div>
+          <div class="work-actions"><button class="btn btn-subtle" id="open-resources" type="button">▤ Research pack</button><button class="btn btn-subtle" id="open-share" type="button">↗ Share board</button><button class="btn btn-primary" id="preview-board" type="button">Present our work <span aria-hidden="true">→</span></button></div></div>
+      </div>
+      <div class="container workspace-layout">
+        <aside class="research-sidebar">
+          <div class="mission-card-compact"><div class="mission-card-cover" id="sidebar-photo"></div><div class="side-content"><span class="tiny-label">MISSION BRIEF</span><h2 id="sidebar-theme"></h2><p id="sidebar-brief"></p></div></div>
+          <div class="sidebar-section"><div class="aside-heading"><span>GUIDING QUESTIONS</span><span class="question-mark">?</span></div><ol id="question-list" class="questions"></ol></div>
+          <div class="sidebar-section"><div class="aside-heading"><span>YOUR RESEARCH</span><span>⌕</span></div><div id="sidebar-resource-list" class="sidebar-resource-list"></div><button class="link-button" id="all-research" type="button">Explore all six research resources ↗</button></div>
+          <div class="sidebar-section"><div class="aside-heading"><span>SOURCE CHECK</span><span>✓</span></div><p class="sidebar-advice">Find out who published each claim, when it was written and what evidence supports it. Include your sources on the board.</p></div>
+        </aside>
+        <div class="board-main"><div class="board-toolbar"><div><div class="kicker dark">YOUR TEAM'S IDEAS</div><h2>Put the pieces together<span class="punctuation">.</span></h2><p>Each note is one discovery. Keep it clear, accurate and short.</p></div><div class="board-tools"><span class="progress-pill" id="board-progress">0 of 5 stages explored</span><button class="btn btn-add" id="add-new" type="button">+ Add a discovery</button></div></div>
+          <div class="board-scroll-hint">← Scroll to explore all five columns →</div>
+          <div id="board-columns" class="board-columns"></div>
+          <div class="conclusion-panel"><div class="conclusion-icon">✦</div><div><div class="tiny-label">THE BIG QUESTION</div><h3>So, what's the secret?</h3><p>In one or two sentences, explain what your investigation reveals about innovation and resilience in Israel.</p><textarea id="conclusion-input" rows="3" maxlength="850" placeholder="We think one reason for Israel's innovative spirit is…"></textarea><div class="conclusion-footer"><span>Your team's main argument</span><span id="conclusion-count">0 / 850</span></div></div></div>
+          <div class="board-bottom-actions"><button class="btn btn-subtle" id="export-json" type="button">↓ Save a backup</button><button class="btn btn-subtle" id="new-mission" type="button">Choose a different mission</button><button class="btn btn-primary" id="finish-board" type="button">Present our discoveries →</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view hidden" id="view-teacher" aria-label="Teacher studio">
+      <div class="teacher-hero"><div class="container"><div class="eyebrow">EXPLORE · EDUCATOR VIEW</div><h1>THE TEACHER <em>STUDIO</em></h1><p>Run the challenge, collect group work and lead the discussion.</p></div></div>
+      <div class="container teacher-layout">
+        <div class="teacher-stack">
+          <div class="teacher-card timer-card"><div><div class="kicker dark">CLASSROOM TIMER</div><h2>30 minute research challenge</h2><p>Use the projector to keep every team on track.</p><div class="timer-readout" id="timer-readout">30:00</div><div class="timer-progress"><span id="timer-bar"></span></div><div class="timer-steps"><span>5 MIN · BRIEF</span><span>20 MIN · RESEARCH</span><span>5 MIN · PREPARE</span></div><div class="timer-controls"><button class="btn btn-primary" id="timer-toggle" type="button">▶ Start timer</button><button class="btn btn-subtle" id="timer-reset" type="button">↻ Reset</button></div></div><div class="timer-orbit" aria-hidden="true">30<span>MIN</span></div></div>
+          <div class="teacher-card"><div class="kicker dark">HOW TO RUN THE WORKSHOP</div><h2>Simple classroom structure</h2><div class="lesson-steps"><div><b>01</b><span><strong>5 minutes · Set the challenge</strong><small>Divide pupils into groups of four and assign one research mission per group.</small></span></div><div><b>02</b><span><strong>20 minutes · Research and build</strong><small>Each team uses one device to read, research and make a thought board.</small></span></div><div><b>03</b><span><strong>5 minutes · Prepare</strong><small>Each group agrees on its main conclusion and chooses a spokesperson.</small></span></div><div><b>04</b><span><strong>Afterwards · Teach the class</strong><small>Allow roughly two minutes per team, followed by reflection and questions.</small></span></div></div></div>
+          <div class="teacher-card"><div class="kicker dark">CLOSING DISCUSSION</div><h2>Beyond the inventions</h2><div class="discussion-prompts"><p>What problems drove the innovations you discovered?</p><p>Which mattered more: the invention, the people or the conditions around them?</p><p>Where do we see resilience, collaboration and creative thinking?</p><p>Were there trade offs, failures or unintended consequences?</p><p>What lessons could other societies learn from these examples?</p></div></div>
+        </div>
+        <div class="teacher-stack">
+          <div class="teacher-card gallery-card"><div class="card-heading-row"><div><div class="kicker dark">CLASS SHOWCASE</div><h2>Team gallery <span id="gallery-count" class="count-badge">0</span></h2></div><button class="icon-button" id="gallery-refresh" aria-label="Refresh gallery" title="Refresh gallery">↻</button></div><p>Ask each group to share its link. Paste the link below to add their board to your gallery.</p><label for="import-url" class="field-label">PASTE A TEAM'S BOARD LINK</label><div class="import-row"><input id="import-url" type="url" placeholder="https://…?board=…"><button class="btn btn-primary" id="import-link" type="button">Add</button></div><div class="import-help">No live syncing is needed. Groups share a snapshot of their finished board.</div><div class="teacher-import-buttons"><button type="button" class="btn btn-subtle" id="add-local-board">+ Add board from this device</button><label for="import-file" class="btn btn-subtle file-btn">↑ Import saved board</label><input type="file" id="import-file" accept=".json,application/json" class="visually-hidden"></div><div id="teacher-gallery" class="teacher-gallery"></div></div>
+          <div class="teacher-card explainer"><div class="kicker dark">PLEASE NOTE</div><h2>Built for GitHub Pages</h2><p>Boards save to each group's browser. A group uses one device, then sends the teacher a share link. Opening the link does not change the original board.</p><p>This is not a live shared workspace. If you need pupils to edit the same board from different devices at once, a separate online database would be needed.</p><div class="privacy-note">No pupil accounts or personal data service is required. Remind groups to use team names rather than sensitive personal details.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view hidden" id="view-present" aria-label="Team presentation">
+      <div class="present-top container"><button type="button" class="text-back" id="present-back">← Back</button><div class="present-top-actions"><span class="present-counter" id="presentation-count"></span><button class="btn btn-glass btn-small" type="button" id="present-gallery-add">+ Add to class gallery</button><button class="btn btn-glass btn-small" type="button" id="present-fullscreen">⛶ Fullscreen</button><button class="btn btn-glass btn-small" type="button" id="present-print">↓ Print or PDF</button></div></div>
+      <div id="presentation-sheet" class="container presentation-sheet"><div class="presentation-meta"><span>EXPLORE · WHAT'S THE SECRET?</span><span>TEAM RESEARCH SHOWCASE</span></div><div class="present-heading"><div><span class="kicker">OUR INVESTIGATION</span><h1 id="present-title"></h1><p id="present-team"></p></div><span class="present-icon">✦</span></div><div id="present-columns" class="present-columns"></div><div class="present-conclusion"><span>OUR ANSWER</span><p id="present-conclusion-text"></p></div><div class="present-foot"><span>STANDWITHUS UK · EXPLORE</span><span>RESEARCH · DISCOVER · EXPLAIN</span></div></div>
+      <div class="presentation-nav container"><button class="btn btn-subtle" type="button" id="previous-board">← Previous group</button><span id="presentation-nav-label"></span><button class="btn btn-primary" type="button" id="next-board">Next group →</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><span>STANDWITHUS UK · EXPLORE</span><span>WHAT'S THE SECRET? · THE INNOVATION CHALLENGE</span><span>BUILT FOR DISCOVERY</span></div></footer>
+
+  <dialog id="setup-dialog" class="dialog-setup"><form method="dialog" id="setup-form"><button class="dialog-close" type="button" data-close="setup-dialog" aria-label="Close">×</button><div class="modal-kicker">GET YOUR TEAM READY</div><div class="modal-cover" id="setup-cover"></div><h2 id="setup-title">Start your mission</h2><p id="setup-subtitle"></p><label class="field-label" for="team-name">TEAM NAME <span>REQUIRED</span></label><input id="team-name" maxlength="65" required placeholder="e.g. The Think Tank"><label class="field-label" for="team-members">TEAM MEMBERS <span>OPTIONAL</span></label><input id="team-members" maxlength="200" placeholder="First names only, separated by commas"><p class="field-help">Your work saves automatically on this device. Use one device per team.</p><button type="submit" class="btn btn-primary btn-block">Open our research lab →</button></form></dialog>
+
+  <dialog id="note-dialog" class="dialog-note"><form id="note-form" method="dialog"><button class="dialog-close" type="button" data-close="note-dialog" aria-label="Close">×</button><div class="modal-kicker" id="note-dialog-kicker">ADD A DISCOVERY</div><h2>What did you find?</h2><p>One idea per note. Show the evidence, not just an opinion.</p><label class="field-label" for="note-column">WHERE DOES IT BELONG?</label><select id="note-column"></select><label class="field-label" for="note-title">YOUR DISCOVERY <span>REQUIRED</span></label><input id="note-title" required maxlength="110" placeholder="e.g. Drip irrigation saves water"><label class="field-label" for="note-detail">EXPLAIN IT <span>REQUIRED</span></label><textarea id="note-detail" required rows="4" maxlength="650" placeholder="What happened? Why did it matter?"></textarea><label class="field-label" for="note-source">YOUR SOURCE</label><input id="note-source" maxlength="150" placeholder="e.g. Netafim website, 2026"><label class="field-label" for="note-source-url">SOURCE LINK <span>OPTIONAL</span></label><input id="note-source-url" type="url" maxlength="650" placeholder="https://…"><div class="note-dialog-footer"><button class="btn btn-danger hidden" type="button" id="note-delete">Delete note</button><button type="submit" class="btn btn-primary">Save discovery →</button></div></form></dialog>
+
+  <dialog id="resource-dialog" class="dialog-resource"><div class="resource-dialog-inner"><div class="resource-dialog-head"><div><div class="modal-kicker">RESEARCH LIBRARY</div><h2 id="resource-dialog-title">Explore the evidence</h2></div><button type="button" class="dialog-close static-close" data-close="resource-dialog" aria-label="Close">×</button></div><div class="resource-dialog-layout"><aside id="resource-list-full" class="resource-list-full"></aside><article id="resource-content" class="resource-content"></article></div></div></dialog>
+
+  <dialog id="share-dialog" class="dialog-share"><div class="share-inner"><button class="dialog-close" type="button" data-close="share-dialog" aria-label="Close">×</button><div class="modal-kicker">SHARE YOUR DISCOVERIES</div><h2>Send your thought board</h2><p>When you are ready, copy a link and send it to your teacher. Anyone with the link can view this saved snapshot of your board.</p><label for="share-link" class="field-label">YOUR BOARD LINK</label><textarea id="share-link" rows="4" readonly></textarea><button type="button" class="btn btn-primary btn-block" id="copy-share">Copy link</button><div class="share-secondary"><button type="button" id="download-from-share" class="btn btn-subtle">↓ Download board backup</button><button type="button" id="share-print" class="btn btn-subtle">↓ Print or save PDF</button></div><p class="share-note">Sharing creates a snapshot. Any later edits require a new link. If possible, send your link through your school's usual platform.</p></div></dialog>
+  <script src="research.js"></script><script src="script.js"></script>
+</body>
+</html>
