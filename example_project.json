@@ -1,0 +1,15 @@
+{
+  "format": "explore-five-questions",
+  "project": {
+    "version": 2,
+    "theme": "water",
+    "team": "Example Team",
+    "answers": [
+      {"text": "Water shortages made farming difficult. Communities had to find ways to grow crops while using less water.", "image": "", "caption": ""},
+      {"text": "Drip irrigation directed small amounts of water close to plant roots, reducing waste compared with some traditional irrigation methods.", "image": "", "caption": ""},
+      {"text": "Israeli engineers, farmers and businesses worked together to improve and spread these technologies.", "image": "", "caption": ""},
+      {"text": "These systems helped farmers manage water more precisely and became useful in many countries. We would compare evidence about cost and water savings.", "image": "", "caption": ""},
+      {"text": "We think cooperation, practical problem solving and persistence helped make innovation possible. We should also investigate the limits of any solution.", "image": "", "caption": ""}
+    ]
+  }
+}

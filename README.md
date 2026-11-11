@@ -1,81 +1,70 @@
-# What's the Secret?
+# What's the Secret? | Simplified Explore workshop
 
-An interactive online research workshop for the StandWithUs UK Explore programme.
+A self contained website for the StandWithUs UK Explore programme. Pupils work in groups of four to investigate how Israeli communities and innovators have responded to challenges.
 
-## What pupils do
+## How the activity works
 
-Pupils work in groups of four and investigate one of six missions. Each team researches Israel's development and innovation, reads the supplied research materials, finds other sources and builds a digital thought board. The board has five sections: The Challenge, The Breakthrough, The People, The Impact and The Secret.
+1. The team selects one of six research topics.
+2. The team enters a name and researches its topic using the original workshop material and further sources.
+3. Pupils answer **five questions**. Each question becomes one presentation slide: the challenge, the breakthrough, the people, the impact and the secret.
+4. For each question, pupils can upload a picture they saved or made, or paste a public image URL. They can add a caption and source.
+5. Pupils select **Download presentation**, send the downloaded HTML file to the teacher and the teacher opens it in a browser. Arrow keys switch slides. The presentation can be printed or saved to PDF.
 
-Each team then writes a short conclusion and presents its discoveries to the class.
+No pupil logins, database or server are required. Pupils use **one device per group**. Answers are automatically saved in that browser. Downloaded presentations contain the complete question text, pupil answers, uploaded images and captions.
 
-## What's included
+**Important:** If an image was added with a web link instead of an uploaded file, it depends on the external image provider and may need an internet connection when presented. For reliable offline sharing, download the picture to the device first and use **Upload picture**.
 
-- Six research missions inspired by the original workshop and the six supplied research documents
-- Built in research library using the supplied written materials
-- Links to the Israel Innovation Authority, Netafim, the National Library of Israel and Jewish National Fund for further research
-- Thought boards with editable notes, source fields and draggable cards
-- Automatic saving in the browser on the team's device
-- Compressed share links carrying a snapshot of a completed board
-- Downloadable JSON backups and print or PDF presentations
-- A teacher studio with a 30 minute timer, suggested lesson structure, reflection prompts and a class gallery
-- Mobile, tablet and desktop layouts
-- Images and branding extracted from the supplied presentation and research materials
+## Publish using GitHub Pages
 
-No external libraries, server or API keys are required.
+1. Make a new repository named `whats_the_secret` (or update the existing one).
+2. Extract the ZIP file on your computer.
+3. Upload **all the files and the assets folder**, with `index.html` at the root of your repository. Do not upload the ZIP as one file.
+4. Commit the changes using the message below.
+5. In repository **Settings**, select **Pages**. Choose **Deploy from a branch**, select `main` and `/(root)`, and save.
+6. Open the published URL from the Pages section.
 
-## Publish on GitHub Pages
+Suggested GitHub commit message:
 
-1. Create a new, empty public repository in your GitHub account. The suggested name is `whats_the_secret`. Leave the automatic README option unticked.
-2. Download and extract the ZIP. Do not upload the ZIP as a single file.
-3. Upload `index.html`, `style.css`, `script.js`, `research.js`, `favicon.svg`, `README.md`, `TEACHER_GUIDE.md`, `example_board.json`, and the complete `assets` folder to the root of the repository.
-4. Commit the files.
-5. Open the repository's **Settings**, then **Pages**.
-6. Under **Build and deployment**, choose **Deploy from a branch**, choose **main** and **/(root)**, then save.
-7. Open the GitHub Pages URL shown in the Pages settings when publication is complete.
-
-To publish with Git instead, open a terminal in the extracted folder and use the following commands. Replace the repository URL if you choose a different name.
-
-```bash
-git init
-git branch -M main
-git remote add origin https://github.com/yehuda-swu/whats_the_secret.git
-git add .
-git commit -m "Build What's the Secret online Explore workshop"
-git push -u origin main
+```
+Simplify What's the Secret to five questions and image presentations
 ```
 
-For future updates:
+If working with Git locally in an existing repository:
 
 ```bash
 git add .
-git commit -m "Improve What's the Secret classroom activity"
+git commit -m "Simplify What's the Secret to five questions and image presentations"
 git push origin main
 ```
 
-## How sharing works
+If your branch is not called `main`, replace `main` in the final command with the branch you use.
 
-GitHub Pages serves static files and does not run an online database. Each team therefore edits a board on **one device**. Its browser saves the board automatically using local storage.
+## Sharing and saving pupil work
 
-When finished, the team selects **Share board**. The app creates a link containing a compressed snapshot of the board. Send this link to the educator through your school's normal communications platform. The educator pastes the link into the **Teacher studio** to add the group to the gallery.
+**Download presentation** creates a single `.html` file for each team. The teacher can open it in Chrome, Edge, Safari or Firefox and display the slides. It has its own navigation and Print or PDF button.
 
-A shared link is a snapshot and will not update as pupils make later changes. To share a new version, create a new link. The teacher can also collect and import the JSON backups. For boards containing many long notes, download a JSON backup in case the link exceeds the limit of a school messaging service.
+**Save editable project** creates a `.json` file containing the answers and uploaded images. This is a backup, not the file pupils normally send for presenting. A team can restore it with **Restore a project**. In the educator view, teachers can also preview an imported editable project.
 
-There are no user accounts, cloud storage or simultaneous edits across devices. Avoid entering sensitive pupil details in team names or boards. If a class needs true live collaboration between individual pupils' devices, add a separately configured online database and access controls before using that mode.
+Pictures are reduced in size when uploaded so the presentation and project are more manageable. A maximum of one image can be attached to each question. The original uploaded file on the pupil's computer is not changed.
 
-## Test the example board
+Browser storage can be cleared, and some school browsers may limit storage. Encourage pupils to download the editable project before finishing if they expect to work on it later.
 
-Open **Teacher studio** and choose **Import saved board**. Select `example_board.json` to see a short demonstration board, which can then be presented to the class.
+This is a static website, so team members do not edit the same project live from separate devices. It also does not automatically send work to the teacher. Use the school's usual learning platform or permitted method for collecting files.
 
-## Resource and copyright note
+## Educational material and credits
 
-The research texts were copied from the six user supplied Word documents for use as classroom starting points. They have not been independently verified in full. Encourage pupils to verify important assertions, dates, figures, attributions and claims using reliable sources. The Hula drainage case, for example, can be used to consider environmental consequences alongside agricultural development.
+The six supplied research documents are included as classroom starting points and have not been comprehensively fact checked. Encourage students to verify important dates, claims and statistics, consider limitations, and credit the original source of any pictures used.
 
-Photographs and branded images were extracted from the presentation and the supplied research documents. Because some source images may have third party rights, confirm permissions and credits before making a public GitHub repository. The app can also be used in a restricted learning context if appropriate to the rights held.
+The images and branding included in the website were supplied with the original workshop. Before publishing a public site, confirm the necessary image rights and permissions.
 
-## Technical notes
+## Files
 
-- Compatible with current Chrome, Edge, Firefox and Safari versions that support ordinary browser storage.
-- Link compression uses the browser's `CompressionStream` where available and falls back to an uncompressed URL payload.
-- The share link contains the board text itself. Treat the link as content that can be forwarded.
-- The app works without an external service. Research source links require internet access.
-- If browser storage is cleared, unsaved local content may be lost. Download backups for important work.
+- `index.html`: simplified application layout
+- `script.js`: five questions, image uploads and standalone presentation export
+- `style.css`: website styles, including mobile layout
+- `research.js`: original supplied research text
+- `assets/`: original supplied workshop visuals and logos
+- `TEACHER_GUIDE.md`: short educator instructions
+- `example_project.json`: sample editable project with text only
+
+No external JavaScript libraries are needed. The page uses an optional Google Fonts stylesheet and will use system fonts if those fonts cannot load.

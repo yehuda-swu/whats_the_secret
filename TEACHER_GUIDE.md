@@ -1,69 +1,54 @@
-# Teacher Guide: What's the Secret?
+# What's the Secret? | Teacher guide
 
-## Workshop aim
+## Learning aim
 
-Pupils investigate how Israel responded to resource shortages, national challenges and new opportunities. Rather than memorising a list of inventions, they explore the connection between problems, people, ideas and outcomes. Teams then teach each other what they have discovered.
+Students investigate how different challenges shaped Israeli innovation and resilience. Each group teaches its peers what it discovered, using evidence, examples and relevant pictures.
 
-**Audience:** Ages 16 to 17.
+## Set up
 
-**Group size:** Approximately four pupils.
+Divide pupils into groups of four and assign or let them choose from six topics:
 
-**Research phase:** 30 minutes.
+1. Changing the land
+2. Kibbutzim and community
+3. A country under pressure
+4. Water and solar power
+5. Everyday breakthroughs
+6. Ideas that travel
 
-**Presentations:** Approximately two minutes per team, plus reflection.
+Each group needs one laptop or tablet. Provide internet access for further research when possible.
 
-## Before the lesson
+## 30 minute research activity
 
-1. Open the GitHub Pages activity on the classroom projector.
-2. Open **Teacher studio** and check the 30 minute timer.
-3. Divide the class into groups of four, allocating missions. There are six missions, but two groups can investigate the same one and compare findings.
-4. Arrange one browser or laptop per group. Ensure pupils can access the research pack and approved external sources.
-5. Ask pupils to use a team name rather than full identifying details.
+**5 minutes:** Introduce the question: What has helped Israel respond to difficult challenges and become a centre for innovation? Groups select their topic and open the online research pack.
 
-## The 30 minute challenge
+**20 minutes:** Pupils answer the five questions and add evidence. Encourage short, clear answers and pictures with a source or caption.
 
-**First 5 minutes:** Explain the big question: What conditions, decisions and ideas help explain Israel's innovation and resilience? Each team opens its mission.
+**5 minutes:** Groups review their slides, check their sources and download their presentations.
 
-**Next 20 minutes:** Teams read the source pack and check additional evidence. They create short sticky notes in five columns: Challenge, Breakthrough, People, Impact and Secret. Notes can include a source name and a link.
+Allow additional time for the groups to share their presentations and discuss the wider questions.
 
-**Final 5 minutes:** Teams review their notes, decide what matters most and complete the final conclusion box. A spokesperson prepares to explain their findings.
+## The five presentation questions
 
-## Class showcase
+1. **The challenge:** What was the problem that needed solving?
+2. **The breakthrough:** What idea or invention helped solve it?
+3. **The people:** Who made it happen?
+4. **The impact:** What difference did it make?
+5. **The secret:** What does this teach us about Israel?
 
-1. Each team opens **Share board**, copies its share link and submits it through the classroom's usual communications channel.
-2. The teacher opens **Teacher studio**, pastes the link and selects **Add**.
-3. Select **Present** beside any team to show its board on the projector.
-4. Encourage students to explain the evidence, not only to read their notes aloud.
-5. Use the left and right arrows to move through the gallery presentations. Print or save individual presentations as PDF if needed.
+## Adding and sharing images
 
-If links are difficult to transfer, pupils can select **Save a backup** and send the resulting JSON file. The teacher can import it using **Import saved board**.
+Each question accepts one uploaded image or image link. A team can save an online photograph, use a screenshot, or create a chart or graphic and upload it.
 
-## Questions for discussion
+**Recommended:** Ask pupils to use **Upload picture**. This includes the uploaded picture directly inside the presentation file. Image links may not work offline or if a website blocks access. Pupils should include an image caption or credit.
 
-- What challenges gave rise to the ideas you discovered?
-- Did innovation begin with individual inventors, organisations or cooperation?
-- Which invention had the clearest positive impact, and how can we tell?
-- Were there costs, setbacks or consequences that complicate the story?
-- How did perseverance and adaptation influence the outcome?
-- What can innovators elsewhere learn from these examples?
+Each team selects **Download presentation**. They should submit the downloaded `.html` file through your normal school platform, or transfer it to the classroom computer according to school policy. Open the file in a browser and use the arrows to move through the slides. You can also use the **Print or PDF** option to create a PDF copy.
 
-## What a strong board contains
+If they want to edit the work later, ask them to select **Save editable project** as well. This produces a `.json` backup.
 
-A strong board gives a clear explanation of the original problem, names people or organisations involved, explains what changed, assesses the impact and supports a conclusion with sources. It avoids exaggerated claims and distinguishes between evidence and interpretation.
+## Discussion prompts
 
-## Mission overview
+What difficulties encouraged new ideas? What part did cooperation and determination play? Which innovation had the greatest impact, and how can that be measured? Were there costs or limitations? What can other societies learn from these examples?
 
-1. **Changing the land:** drainage, farming, environmental adaptation and consequences.
-2. **Kibbutzim and community:** collective life, cooperation and the evolution of communal settlements.
-3. **A country under pressure:** independence, immigration, shortage and rationing.
-4. **Water and solar power:** solar water heating, precision irrigation and resource scarcity.
-5. **Everyday breakthroughs:** Afimilk, Epilady, Quicktionary and product innovation.
-6. **Ideas that travel:** PillCam, ReWalk and later inventions, including their benefits and limitations.
+## Privacy and copyright
 
-## Safeguarding and privacy
-
-Each group's notes are saved in its own browser. The website has no student accounts. Shared links include the board content, so pupils should not enter private or sensitive personal information. There is no live cloud gallery. The teacher's gallery is saved only in the teacher's browser.
-
-## Content and source checking
-
-The supplied research documents are reproduced in the research library as starting materials. The older materials may contain outdated statistics or unverified generalisations. Encourage independent source checks, especially for claims that an invention was the first of its kind or that it changed the entire world. Images in the supplied documents may require permission for public reproduction.
+Use team names rather than pupils' full names. Review the evidence carefully. The supplied texts are starting points, not verified academic references. Please check the rights and credits for images before sharing work publicly.
