@@ -12,7 +12,7 @@ import {
 
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const teacherEmails = new Set(['edeni@standwithus.com','egarfunkel@standwithus.com']);
+const teacherEmails = new Set(['edeni@standwithus.com','egarfunkel@standwithus.com','yehuda@standwithus.com']);
 const config = window.SECRET_FIREBASE_CONFIG || {};
 const configured = ['apiKey','authDomain','projectId','appId'].every(k => typeof config[k] === 'string' && config[k].trim() && !config[k].includes('REPLACE'));
 const status = (message, cls = '') => {
@@ -94,7 +94,7 @@ function renderAuth(user) {
 }
 function emailAllowed() {
   const email = $('#educator-email').value.trim().toLowerCase();
-  if (!teacherEmails.has(email)) throw Error('Only Eden or Eliana can register for the educator gallery.');
+  if (!teacherEmails.has(email)) throw Error('Only Eden, Eliana or Yehuda can register for the educator gallery.');
   return email;
 }
 function authMessage(message) { $('#auth-message').textContent = message; }

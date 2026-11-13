@@ -14,6 +14,8 @@ Eden: edeni@standwithus.com
 
 Eliana: egarfunkel@standwithus.com
 
+Yehuda: yehuda@standwithus.com
+
 Only the educator who owns a classroom can view its submissions in the gallery. Another educator can create their own classroom and share that classroom's code.
 
 ## Suggested workshop structure

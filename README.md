@@ -1,8 +1,17 @@
 # What's the Secret? | Explore Classroom Gallery
 
-This version keeps the simple five question pupil activity and adds an educator classroom gallery. Groups can submit answers and uploaded images directly from their device. Eden and Eliana can see incoming work in a private gallery, present the slides, download copies and close submissions after the session.
+This version keeps the simple five question pupil activity and adds an educator classroom gallery. Groups can submit answers and uploaded images directly from their device. Eden, Eliana and Yehuda can see incoming work in a private gallery, present the slides, download copies and close submissions after the session.
 
 **Important: The classroom gallery requires a one time Firebase setup.** Installing the ZIP on GitHub Pages alone does not make online submissions work. Until configured, pupils can still work, save, preview and download presentations as before.
+
+## Updating from the previous gallery version
+
+1. Replace `gallery.js` in the GitHub Pages repository with this new version. You can upload the full ZIP instead, preserving the folder structure and any existing Firebase configuration.
+2. Open **Firebase Console → Firestore Database → Rules** and publish the *updated* `firestore.rules` file. Uploading that rules file to GitHub does **not** publish database rules.
+3. Yehuda can then open **For teachers → First time? Create account**, using `yehuda@standwithus.com`, choose a password and verify his email before signing in. If his account is already in Firebase Authentication, use **Sign in** or **Reset password** instead.
+4. Each educator sees only the classrooms they personally created. Adding Yehuda does not grant access to Eden's or Eliana's existing classrooms.
+
+If your `firebase-config.js` is already filled in, **retain your existing configured file** rather than overwriting it with the blank template in this ZIP.
 
 ## How the activity works
 
@@ -39,12 +48,13 @@ window.SECRET_FIREBASE_CONFIG = {
 1. In Firebase go to **Build → Authentication → Sign in method**.
 2. Enable **Email/Password** and **Anonymous**. Do not enable open public educator access or allow arbitrary email addresses in the gallery.
 3. In Authentication settings, add `yehuda-swu.github.io` to **Authorised domains** (or whichever domain is hosting the site). This is a domain, not the full URL. Add `localhost` only while testing locally if necessary.
-4. Eden and Eliana each choose **For teachers → First time? Create account**, using their own email and password. The app sends them a verification email. They must verify their address before viewing pupil work.
+4. Eden, Eliana and Yehuda each choose **For teachers → First time? Create account**, using their own email and password. The app sends them a verification email. They must verify their address before viewing pupil work.
 
 The educator gallery recognises only these verified accounts:
 
 * `edeni@standwithus.com`
 * `egarfunkel@standwithus.com`
+* `yehuda@standwithus.com`
 
 These email addresses are also enforced by database rules; the interface alone is not the access control.
 
@@ -70,14 +80,14 @@ The rules enforce these controls: only verified educator accounts can read class
 Suggested commit message:
 
 ```text
-Add secure classroom gallery and direct presentation submissions
+Authorise Yehuda as an educator in classroom gallery
 ```
 
 If using Git locally:
 
 ```bash
 git add .
-git commit -m "Add secure classroom gallery and direct presentation submissions"
+git commit -m "Authorise Yehuda as an educator in classroom gallery"
 git push origin main
 ```
 
