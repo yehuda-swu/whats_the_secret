@@ -50,27 +50,24 @@ function presentationDocument(p){const t=theme(p.theme);const safeTeam=escapeHTM
  return `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${safeTeam} | What's the Secret?</title><style>${css}</style></head><body>${slides.join('')}<nav class="controls" aria-label="Presentation controls"><button type="button" id="previous">← Previous</button><span id="page-num">1 / 6</span><button type="button" id="next">Next →</button><button type="button" id="full">Fullscreen</button><button type="button" id="print">Print or PDF</button></nav><script>${logic}<\/script></body></html>`;
 }
 function previewPresentation(p=project){if(!p)return;const blob=new Blob([presentationDocument(p)],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const win=window.open(url,'_blank','noopener');if(!win){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.append(a);a.click();a.remove()}setTimeout(()=>URL.revokeObjectURL(url),60000)}
-function downloadPresentation(){if(!project)return;const html=presentationDocument(project);triggerDownload(new Blob([html],{type:'text/html;charset=utf-8'}),filename()+'_presentation.html');toast('Presentation downloaded with your uploaded pictures. Send this file to your teacher.')}
+function downloadPresentation(){if(!project)return;const html=presentationDocument(project);triggerDownload(new Blob([html],{type:'text/html;charset=utf-8'}),filename()+'_presentation.html');toast('Presentation downloaded with your uploaded pictures. Keep this as a backup.')}
 const EDUCATORS={eden:{name:'Eden',email:'edeni@standwithus.com'},eliana:{name:'Eliana',email:'egarfunkel@standwithus.com'}};
 function emailEducator(id){
  if(!project)return;
  const educator=EDUCATORS[id];if(!educator)return;
- const linkField=$('#presentation-link');const raw=linkField?.value.trim()||'';
- const link=raw?validURL(raw):'';
- if(raw&&!link){toast('Please enter a valid online link starting with https://');linkField.focus();return}
  const subject=`What's the Secret? | ${project.team} | ${theme(project.theme).title}`;
- const body=link
-   ?`Hello ${educator.name},\n\nWe have completed our What's the Secret? presentation.\n\nTeam: ${project.team}\nTopic: ${theme(project.theme).title}\n\nHere is our presentation link:\n${link}\n\nThank you.`
-   :`Hello ${educator.name},\n\nWe have completed our What's the Secret? presentation.\n\nTeam: ${project.team}\nTopic: ${theme(project.theme).title}\n\nWe have attached our downloaded presentation HTML file to this email.\n\nThank you.\n\nPLEASE ATTACH YOUR PRESENTATION FILE BEFORE SENDING.`;
- if(!link)toast('Attach your downloaded presentation file before sending the email.');
+ const body=`Hello ${educator.name},\n\nWe have completed our What's the Secret? presentation.\n\nTeam: ${project.team}\nTopic: ${theme(project.theme).title}\n\nPlease find our presentation file attached.\n\nPLEASE ATTACH THE DOWNLOADED PRESENTATION BEFORE SENDING.`;
+ toast('Remember to attach the downloaded presentation file.');
  window.location.href=`mailto:${educator.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 function resetActivity(){
  if(!project){nav('home');toast('There is no project to reset.');return}
  if(!confirm('Reset this activity? This deletes all five answers and uploaded pictures saved in this browser. Download your presentation or editable project first if you want to keep your work.'))return;
  project=null;
- try{localStorage.removeItem(KEY);localStorage.removeItem(OLD)}catch{}
- const linkField=$('#presentation-link');if(linkField)linkField.value='';
+ try{localStorage.removeItem(KEY);localStorage.removeItem(OLD);localStorage.removeItem('secret_gallery_room');Object.keys(localStorage).filter(k=>k.startsWith('secret_gallery_submit_')).forEach(k=>localStorage.removeItem(k))}catch{}
+ const roomInput=$('#class-code');if(roomInput)roomInput.value='';
+ const submitStatus=$('#submission-status');if(submitStatus){submitStatus.textContent='Not yet submitted.';submitStatus.className='submission-status'}
+
  nav('home');toast('Activity reset. Choose a topic to start again.');
 }
 function timerUI(){const left=timerRunning?Math.max(0,Math.ceil((timerEnd-Date.now())/1000)):timeRemaining;if(timerRunning)timeRemaining=left;if(!left)timerRunning=false;$('#timer-display').textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');$('#timer-progress').style.width=(left/1800*100)+'%';$('#timer-play').textContent=timerRunning?'Pause timer':left===0?'Start again':'Start timer';if(!timerRunning)localStorage.setItem(TIMER_KEY,JSON.stringify({remaining:left}))}
@@ -79,3 +76,5 @@ function resetTimer(){timerRunning=false;timeRemaining=1800;timerUI()}
 function bind(){$$('[data-nav]').forEach(b=>b.onclick=()=>nav(b.dataset.nav));$('#start-form').addEventListener('submit',startProject);$$('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).close());$$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));$('#research-top').onclick=()=>openResearch();$('#read-research').onclick=()=>openResearch();$('#preview-top').onclick=()=>previewPresentation();$('#preview-bottom').onclick=()=>previewPresentation();$('#download-presentation').onclick=downloadPresentation;$('#download-project').onclick=saveJSON;$('#restore-file').onchange=e=>{openJSON(e.target.files?.[0]);e.target.value=''};$('#teacher-import').onchange=e=>{openJSON(e.target.files?.[0],true);e.target.value=''};$('#timer-play').onclick=toggleTimer;$('#timer-reset').onclick=resetTimer;$('#reset-activity').onclick=resetActivity;$('#reset-home').onclick=resetActivity;$$('[data-educator]').forEach(b=>b.onclick=()=>emailEducator(b.dataset.educator))}
 function init(){project=loadProject();renderTopics();bind();try{const t=JSON.parse(localStorage.getItem(TIMER_KEY));if(Number.isFinite(t?.remaining))timeRemaining=Math.max(0,Math.min(1800,t.remaining))}catch{}timerUI();setInterval(()=>{if(timerRunning)timerUI()},500);nav(location.hash==='#board'?'board':location.hash==='#teacher'?'teacher':'home')}
 init();
+// Provide a read-only snapshot to the gallery module without changing existing project state.
+window.getSecretProject = () => project ? sanitiseProject(project) : null;

@@ -1,60 +1,57 @@
-# What's the Secret? | Teacher guide
+# Educator guide | What's the Secret?
 
-## Learning aim
+## Before the workshop
 
-Students investigate how different challenges shaped Israeli innovation and resilience. Each group teaches its peers what it discovered, using evidence, examples and relevant pictures.
+Your organisation's Firebase administrator must complete the **one time online gallery setup** in `README.md`. GitHub Pages alone cannot receive pupil submissions. Do not begin a live class until you have tested the complete submission process.
 
-## Set up
+1. Open the activity and select **For teachers**.
+2. Sign in with your verified educator email and password. On your first visit, create your account and verify the email message.
+3. Enter a class name, such as `Y12 Thursday`, and select **Create classroom**.
+4. Display the **seven character classroom code** on the projector or write it on the board. Different classes should use separate classrooms.
+5. Leave the gallery open. New submissions appear automatically.
 
-Divide pupils into groups of four and assign or let them choose from six topics:
+Eden: edeni@standwithus.com
 
-1. Changing the land
-2. Kibbutzim and community
-3. A country under pressure
-4. Water and solar power
-5. Everyday breakthroughs
-6. Ideas that travel
+Eliana: egarfunkel@standwithus.com
 
-Each group needs one laptop or tablet. Provide internet access for further research when possible.
+Only the educator who owns a classroom can view its submissions in the gallery. Another educator can create their own classroom and share that classroom's code.
 
-## 30 minute research activity
+## Suggested workshop structure
 
-**5 minutes:** Introduce the question: What has helped Israel respond to difficult challenges and become a centre for innovation? Groups select their topic and open the online research pack.
+**5 minutes: Introduce the challenge**
 
-**20 minutes:** Pupils answer the five questions and add evidence. Encourage short, clear answers and pictures with a source or caption.
+What makes Israel such a centre for innovation? Groups of four choose one of six research themes.
 
-**5 minutes:** Groups review their slides, check their sources and download their presentations.
+**30 minutes: Research and prepare**
 
-Allow additional time for the groups to share their presentations and discuss the wider questions.
+Teams use the research extracts and further credible sources. They answer exactly five questions:
 
-## The five presentation questions
+1. The challenge: what needed solving?
+2. The breakthrough: what idea helped?
+3. The people: who made it happen?
+4. The impact: what difference did it make?
+5. The secret: what does this reveal about resilience or innovation?
 
-1. **The challenge:** What was the problem that needed solving?
-2. **The breakthrough:** What idea or invention helped solve it?
-3. **The people:** Who made it happen?
-4. **The impact:** What difference did it make?
-5. **The secret:** What does this teach us about Israel?
+Each question can include one picture with a caption or source. Encourage a simple answer of two or three sentences.
 
-## Adding and sharing images
+**5 minutes: Submit**
 
-Each question accepts one uploaded image or image link. A team can save an online photograph, use a screenshot, or create a chart or graphic and upload it.
+The group enters the classroom code at the bottom of the activity and chooses **Submit presentation**. A green confirmation message means the data has been received. Pupils do not need an email account. Submitted presentations include resized uploaded images. If submissions cannot be sent, use **Download a copy** instead.
 
-**Recommended:** Ask pupils to use **Upload picture**. This includes the uploaded picture directly inside the presentation file. Image links may not work offline or if a website blocks access. Pupils should include an image caption or credit.
+**10 to 20 minutes: Present and discuss**
 
-Each team selects **Download presentation**. Then they choose **Email Eden** (`edeni@standwithus.com`) or **Email Eliana** (`egarfunkel@standwithus.com`). This opens a prepared email, but the pupil must **attach the downloaded `.html` file before sending**. If a team has uploaded its work to a school approved file platform, it can paste its shareable link in the optional field and then email that link instead. Please check that the link grants access to the intended Educator.
+Open the gallery, choose each group and select **Present**. Use the arrow keys to move between slides. You can download the file from the educator gallery as a backup. Discuss the strengths and limitations of each innovation and the sources used.
 
-The website does not create public links or send emails automatically, and no pupil content is uploaded to the activity website. This protects pupils' work and keeps the GitHub Pages site simple.
+## During and after the lesson
 
-You can also collect the downloaded file through your normal school platform or transfer it to the classroom computer according to school policy. Open the file in a browser and use the arrows to move through the slides. You can also use the **Print or PDF** option to create a PDF copy.
+* Use the built in classroom timer if useful.
+* The code is shown in the **For teachers** gallery. Share only the code with pupils, not your sign in details.
+* Select **Close submissions** once the session ends. You can reopen it if a group needs to submit again.
+* Select **Remove** on any individual submission you no longer need. There is no automatic deletion of pupil work.
+* Encourage team names rather than pupils' full names. Do not upload personal photographs unless school and organisational policies permit it.
 
-The redesigned site uses larger fonts, larger buttons and visible keyboard focus states. **Reset activity** appears on the project screen and home page. It asks for confirmation before clearing the current group's work from the device. Save files before resetting, especially when several groups share a device.
+## What if an online submission fails?
 
-If they want to edit the work later, ask them to select **Save editable project** as well. This produces a `.json` backup.
+Ask the team to check its code and internet connection. If the gallery has not been configured, or the school network blocks Firebase, the team can still **Download a copy** containing the five slides and uploaded pictures. It will open in any modern browser and can be attached to an email manually.
 
-## Discussion prompts
-
-What difficulties encouraged new ideas? What part did cooperation and determination play? Which innovation had the greatest impact, and how can that be measured? Were there costs or limitations? What can other societies learn from these examples?
-
-## Privacy and copyright
-
-Use team names rather than pupils' full names. Review the evidence carefully. The supplied texts are starting points, not verified academic references. Please check the rights and credits for images before sharing work publicly.
+**Important:** The Email Eden and Email Eliana buttons prepare an email but cannot attach the presentation automatically. Direct gallery submission is the recommended method.

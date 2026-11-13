@@ -1,74 +1,119 @@
-# What's the Secret? | Simplified Explore workshop
+# What's the Secret? | Explore Classroom Gallery
 
-A self contained website for the StandWithUs UK Explore programme. Pupils work in groups of four to investigate how Israeli communities and innovators have responded to challenges.
+This version keeps the simple five question pupil activity and adds an educator classroom gallery. Groups can submit answers and uploaded images directly from their device. Eden and Eliana can see incoming work in a private gallery, present the slides, download copies and close submissions after the session.
+
+**Important: The classroom gallery requires a one time Firebase setup.** Installing the ZIP on GitHub Pages alone does not make online submissions work. Until configured, pupils can still work, save, preview and download presentations as before.
 
 ## How the activity works
 
-1. The team selects one of six research topics.
-2. The team enters a name and researches its topic using the original workshop material and further sources.
-3. Pupils answer **five questions**. Each question becomes one presentation slide: the challenge, the breakthrough, the people, the impact and the secret.
-4. For each question, pupils can upload a picture they saved or made, or paste a public image URL. They can add a caption and source.
-5. Pupils select **Download presentation**, then select **Email Eden** or **Email Eliana**. Their email application opens a prepared message. Pupils must attach the downloaded `.html` presentation file before sending. The Educator opens it in a browser. Arrow keys switch slides, and the presentation can be printed or saved to PDF.
+1. An Educator signs in, creates a classroom and puts the seven character code on the screen.
+2. Each team selects a research theme and answers the five questions, optionally uploading one image per question.
+3. The team enters the classroom code and selects **Submit presentation**. No pupil sign in or email address is needed.
+4. The Educator opens **For teachers**, selects their classroom and sees submissions appear automatically.
+5. Select **Present** to display the slides, **Download** to save a presentation, or **Remove** to delete an incorrect submission.
+6. Pupils retain **Preview**, **Download a copy**, **Save editable project** and optional manual email buttons.
 
-The website now uses considerably larger type and controls, visible keyboard focus and a **Reset activity** button. Reset asks for confirmation before erasing the saved work on that device.
+## One time setup: Firebase (required for live submissions)
 
-No pupil logins, database or server are required. Pupils use **one device per group**. Answers are automatically saved in that browser. Downloaded presentations contain the complete question text, pupil answers, uploaded images and captions.
+This version uses Google's Firebase Authentication and Cloud Firestore. You do not need to set up a standalone server or pay for file storage. Images are resized for submission and included within Firestore documents. Each presentation has a maximum size, so extremely detailed images might need to be reduced. [Firebase instructions](https://firebase.google.com/docs/web/setup) | [Firestore free tier and usage limits](https://firebase.google.com/docs/firestore/quotas).
 
-**Important:** If an image was added with a web link instead of an uploaded file, it depends on the external image provider and may need an internet connection when presented. For reliable offline sharing, download the picture to the device first and use **Upload picture**.
+### Step 1: Create the project
 
-## Publish using GitHub Pages
+1. Visit https://console.firebase.google.com/ and create a Firebase project called, for example, `Explore Classroom Gallery`.
+2. Add a **Web app** in Project settings. Copy the *Firebase configuration* object shown in its setup page. You need the `apiKey`, `authDomain`, `projectId` and `appId` values. Do not copy credentials from a service account, private key or Firebase Admin SDK.
+3. Open `firebase-config.js` in the ZIP. Replace each blank value with the corresponding web app configuration value from Firebase. The web app configuration identifies the project and is meant to be public. Keep private admin credentials out of GitHub.
 
-1. Make a new repository named `whats_the_secret` (or update the existing one).
-2. Extract the ZIP file on your computer.
-3. Upload **all the files and the assets folder**, with `index.html` at the root of your repository. Do not upload the ZIP as one file.
-4. Commit the changes using the message below.
-5. In repository **Settings**, select **Pages**. Choose **Deploy from a branch**, select `main` and `/(root)`, and save.
-6. Open the published URL from the Pages section.
+Example layout (the letters below are deliberately invalid placeholders):
 
-Suggested GitHub commit message:
-
+```js
+window.SECRET_FIREBASE_CONFIG = {
+  apiKey: 'PASTE_API_KEY',
+  authDomain: 'PASTE_PROJECT.firebaseapp.com',
+  projectId: 'PASTE_PROJECT_ID',
+  appId: 'PASTE_APP_ID'
+};
 ```
-Increase accessibility and add activity reset and educator email buttons
+
+### Step 2: Enable Authentication
+
+1. In Firebase go to **Build → Authentication → Sign in method**.
+2. Enable **Email/Password** and **Anonymous**. Do not enable open public educator access or allow arbitrary email addresses in the gallery.
+3. In Authentication settings, add `yehuda-swu.github.io` to **Authorised domains** (or whichever domain is hosting the site). This is a domain, not the full URL. Add `localhost` only while testing locally if necessary.
+4. Eden and Eliana each choose **For teachers → First time? Create account**, using their own email and password. The app sends them a verification email. They must verify their address before viewing pupil work.
+
+The educator gallery recognises only these verified accounts:
+
+* `edeni@standwithus.com`
+* `egarfunkel@standwithus.com`
+
+These email addresses are also enforced by database rules; the interface alone is not the access control.
+
+### Step 3: Create Firestore and publish its security rules
+
+1. Open **Build → Firestore Database → Create database**. Choose a region and **production mode**. You can use the default database. Do not leave the database in permissive test mode.
+2. Open **Firestore Database → Rules**.
+3. Replace the existing rules with the **entire contents** of the supplied `firestore.rules` file.
+4. Select **Publish**. Check that the rules have been published successfully.
+
+The rules enforce these controls: only verified educator accounts can read classroom work; educators can access only their own classrooms; anonymous pupils can create submissions only when they know an open classroom code; pupils cannot list, read or edit other teams' work; and educator accounts can remove individual submissions.
+
+**Do not replace the supplied rules with `allow read, write: if true`.** That would expose pupils' work.
+
+### Step 4: Publish to GitHub Pages
+
+1. Extract this ZIP.
+2. Upload `index.html`, `style.css`, `script.js`, `research.js`, `gallery.js`, `gallery-loader.js`, `firebase-config.js`, `firestore.rules`, the `assets/` folder and the documentation into your existing `whats_the_secret` GitHub repository. Preserve the folder structure. The `.rules` file is there for setup and is not automatically applied by GitHub.
+3. If GitHub Pages is not already on, use **Settings → Pages → Deploy from a branch → main → /(root)**.
+4. Open `https://yehuda-swu.github.io/whats_the_secret/` after the commit finishes publishing.
+5. Open **For teachers**, create a classroom and test submitting a project from a separate browser or private window.
+
+Suggested commit message:
+
+```text
+Add secure classroom gallery and direct presentation submissions
 ```
 
-If working with Git locally in an existing repository:
+If using Git locally:
 
 ```bash
 git add .
-git commit -m "Increase accessibility and add activity reset and educator email buttons"
+git commit -m "Add secure classroom gallery and direct presentation submissions"
 git push origin main
 ```
 
-If your branch is not called `main`, replace `main` in the final command with the branch you use.
+If the branch is not `main`, use your existing branch name.
 
-## Sharing and saving pupil work
+## Common issues
 
-**Download presentation** creates a single `.html` file for each team. The teacher can open it in Chrome, Edge, Safari or Firefox and display the slides. It has its own navigation and Print or PDF button.
+| What happens | What to check |
+| --- | --- |
+| Gallery not connected | `firebase-config.js` contains all four correct web app values. |
+| Permission denied when submitting | Check the seven character code, whether submissions are closed, and whether the supplied Firestore rules were published. |
+| Educator cannot sign in | Enable Email/Password in Firebase; use the correct email and password. |
+| Email verification does not work | Check spam; select **Send another email**, then **I have verified my email**. |
+| No classrooms listed | Sign in as the educator who created that classroom. Each educator sees only their own rooms. |
+| Images missing from submitted work | Upload image files rather than linking to external sites. External image URLs depend on their original hosts. |
+| Online submission is too large | Use smaller images or rely on the local downloadable presentation. |
+| Pupils use a restricted device | Download the presentation and deliver it manually. Some school networks may block Firebase. |
 
-**Save editable project** creates a `.json` file containing the answers and uploaded images. This is a backup, not the file pupils normally send for presenting. A team can restore it with **Restore a project**. In the educator view, teachers can also preview an imported editable project.
+## Safeguarding and data handling
 
-Pictures are reduced in size when uploaded so the presentation and project are more manageable. A maximum of one image can be attached to each question. The original uploaded file on the pupil's computer is not changed.
-
-Browser storage can be cleared, and some school browsers may limit storage. Encourage pupils to download the editable project before finishing if they expect to work on it later.
-
-This is a static website, so team members do not edit the same project live from separate devices. It also does not automatically send work to an Educator. The built in email buttons open a prepared message addressed to **Eden (edeni@standwithus.com)** or **Eliana (egarfunkel@standwithus.com)**. Pupils must attach the downloaded HTML file themselves.
-
-The form also accepts an optional online presentation link, for teams who have already uploaded their file to an approved platform and enabled appropriate sharing permissions. GitHub Pages cannot itself create a public link to a pupil's uploaded pictures or finished presentation. The website does not send work to a server.
-
-## Educational material and credits
-
-The six supplied research documents are included as classroom starting points and have not been comprehensively fact checked. Encourage students to verify important dates, claims and statistics, consider limitations, and credit the original source of any pictures used.
-
-The images and branding included in the website were supplied with the original workshop. Before publishing a public site, confirm the necessary image rights and permissions.
+* Ask pupils to choose a **group name**, not a full legal name. Avoid personal or sensitive information in answers, captions and pictures.
+* Submitted answers and resized uploaded images are stored in your Firebase project's Cloud Firestore. They do not become public websites. A person with a classroom code can submit a presentation while the room is open, but cannot see others' work.
+* Firebase user credentials and database management remain under the account that creates the Firebase project. Use an organisation controlled Firebase project and align its data location, retention, access and privacy notices with StandWithUs UK policy.
+* Educators should remove submissions when no longer needed. Removing a submission from the gallery deletes its stored document. Closing a classroom stops new submissions but does not delete existing work. There is no automated retention period in this version.
+* The supplied research extracts have not been independently verified. Encourage students to check claims and credit sources and pictures.
 
 ## Files
 
-- `index.html`: simplified application layout
-- `script.js`: five questions, image uploads and standalone presentation export
-- `style.css`: large accessible text, spacious controls, clear focus states and mobile layout
-- `research.js`: original supplied research text
-- `assets/`: original supplied workshop visuals and logos
-- `TEACHER_GUIDE.md`: short educator instructions
-- `example_project.json`: sample editable project with text only
+* `index.html`: activity and classroom gallery
+* `style.css`: responsive layouts and large readable controls
+* `script.js`: existing five question workflow, image upload and presentation export
+* `research.js`: supplied classroom research materials
+* `gallery.js` and `gallery-loader.js`: secure Firebase educator sign in, classroom codes and submissions
+* `firebase-config.js`: **fill in your Firebase project values before publishing**
+* `firestore.rules`: **copy into Firestore security rules and publish**
+* `TEACHER_GUIDE.md`: lesson instructions
+* `assets/`: supplied logos and classroom visuals
 
-No external JavaScript libraries are needed. The page uses an optional Google Fonts stylesheet and will use system fonts if those fonts cannot load.
+No Firebase administrator key or secret is included. The online workflow cannot be live tested until you connect your Firebase project.
