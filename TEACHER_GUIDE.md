@@ -56,4 +56,4 @@ Open the gallery, choose each group and select **Present**. Use the arrow keys t
 
 Ask the team to check its code and internet connection. If the gallery has not been configured, or the school network blocks Firebase, the team can still **Download a copy** containing the five slides and uploaded pictures. It will open in any modern browser and can be attached to an email manually.
 
-**Important:** The Email Eden and Email Eliana buttons prepare an email but cannot attach the presentation automatically. Direct gallery submission is the recommended method.
+**Important:** The Email Eden, Email Eliana and Email Yehuda buttons prepare an email but cannot attach the presentation automatically. Direct gallery submission is the recommended method.

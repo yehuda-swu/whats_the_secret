@@ -51,7 +51,7 @@ function presentationDocument(p){const t=theme(p.theme);const safeTeam=escapeHTM
 }
 function previewPresentation(p=project){if(!p)return;const blob=new Blob([presentationDocument(p)],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const win=window.open(url,'_blank','noopener');if(!win){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.append(a);a.click();a.remove()}setTimeout(()=>URL.revokeObjectURL(url),60000)}
 function downloadPresentation(){if(!project)return;const html=presentationDocument(project);triggerDownload(new Blob([html],{type:'text/html;charset=utf-8'}),filename()+'_presentation.html');toast('Presentation downloaded with your uploaded pictures. Keep this as a backup.')}
-const EDUCATORS={eden:{name:'Eden',email:'edeni@standwithus.com'},eliana:{name:'Eliana',email:'egarfunkel@standwithus.com'}};
+const EDUCATORS={eden:{name:'Eden',email:'edeni@standwithus.com'},eliana:{name:'Eliana',email:'egarfunkel@standwithus.com'},yehuda:{name:'Yehuda',email:'yehuda@standwithus.com'}};
 function emailEducator(id){
  if(!project)return;
  const educator=EDUCATORS[id];if(!educator)return;

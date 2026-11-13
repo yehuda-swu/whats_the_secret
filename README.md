@@ -2,7 +2,7 @@
 
 This version keeps the simple five question pupil activity and adds an educator classroom gallery. Groups can submit answers and uploaded images directly from their device. Eden, Eliana and Yehuda can see incoming work in a private gallery, present the slides, download copies and close submissions after the session.
 
-**Important: The classroom gallery requires a one time Firebase setup.** Installing the ZIP on GitHub Pages alone does not make online submissions work. Until configured, pupils can still work, save, preview and download presentations as before.
+**Firebase web settings have been inserted for the Explore Classroom Gallery project.** Authentication and Firestore rules still need to be enabled and published in Firebase (you have already completed those steps). Uploading this ZIP to GitHub Pages is the next step. Live submissions must still be tested.
 
 ## Updating from the previous gallery version
 
@@ -11,7 +11,7 @@ This version keeps the simple five question pupil activity and adds an educator 
 3. Yehuda can then open **For teachers → First time? Create account**, using `yehuda@standwithus.com`, choose a password and verify his email before signing in. If his account is already in Firebase Authentication, use **Sign in** or **Reset password** instead.
 4. Each educator sees only the classrooms they personally created. Adding Yehuda does not grant access to Eden's or Eliana's existing classrooms.
 
-If your `firebase-config.js` is already filled in, **retain your existing configured file** rather than overwriting it with the blank template in this ZIP.
+**This version includes your configured `firebase-config.js`.** Do not replace it with the earlier blank version.
 
 ## How the activity works
 
@@ -30,7 +30,7 @@ This version uses Google's Firebase Authentication and Cloud Firestore. You do n
 
 1. Visit https://console.firebase.google.com/ and create a Firebase project called, for example, `Explore Classroom Gallery`.
 2. Add a **Web app** in Project settings. Copy the *Firebase configuration* object shown in its setup page. You need the `apiKey`, `authDomain`, `projectId` and `appId` values. Do not copy credentials from a service account, private key or Firebase Admin SDK.
-3. Open `firebase-config.js` in the ZIP. Replace each blank value with the corresponding web app configuration value from Firebase. The web app configuration identifies the project and is meant to be public. Keep private admin credentials out of GitHub.
+3. For this configured version, `firebase-config.js` already contains your web app configuration. No editing is necessary. Keep private admin credentials out of GitHub.
 
 Example layout (the letters below are deliberately invalid placeholders):
 
@@ -121,9 +121,9 @@ If the branch is not `main`, use your existing branch name.
 * `script.js`: existing five question workflow, image upload and presentation export
 * `research.js`: supplied classroom research materials
 * `gallery.js` and `gallery-loader.js`: secure Firebase educator sign in, classroom codes and submissions
-* `firebase-config.js`: **fill in your Firebase project values before publishing**
+* `firebase-config.js`: already filled in with your Firebase project web settings
 * `firestore.rules`: **copy into Firestore security rules and publish**
 * `TEACHER_GUIDE.md`: lesson instructions
 * `assets/`: supplied logos and classroom visuals
 
-No Firebase administrator key or secret is included. The online workflow cannot be live tested until you connect your Firebase project.
+No Firebase administrator key or secret is included. The Firebase web configuration is in place, but the online workflow must be tested once the GitHub Pages site has updated.
