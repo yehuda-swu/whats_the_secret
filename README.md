@@ -1,6 +1,6 @@
 # What's the Secret? | Explore Classroom Gallery
 
-Version 4.3 keeps the simple five question pupil activity and adds educator classroom deletion to the existing gallery. Groups can submit answers and uploaded images directly from their device. Eden, Eliana and Yehuda can see incoming work in a private gallery, present the slides, download copies, close submissions after the session and permanently delete an old classroom together with its presentations.
+Version 4.4 keeps the simple five question pupil activity and adds educator classroom deletion to the existing gallery. Groups can submit answers and uploaded images directly from their device. Eden, Eliana and Yehuda can see incoming work in a private gallery, present the slides, download copies, close submissions after the session and permanently delete an old classroom together with its presentations.
 
 **Firebase web settings have been inserted for the Explore Classroom Gallery project.** Authentication and Firestore rules still need to be enabled and published in Firebase (you have already completed those steps). Upload the updated files to GitHub Pages and publish the revised Firestore rules. The new deletion flow must be tested using a practice classroom.
 
@@ -95,6 +95,12 @@ git push origin main
 ```
 
 If the branch is not `main`, use your existing branch name.
+
+### Fixing "Access denied" when deleting a classroom
+
+If the deletion dialogue says the classroom is closed but access was denied, the website may have already removed presentations but Firebase is still applying earlier rules. In particular, the previous Version 4.2 rules contained `allow delete: if false;`. Open **Firestore Database → Rules** and replace the rules there with the full supplied `firestore.rules` file, then select **Publish**. Return to the gallery, refresh and retry deleting the closed classroom. The new rule checks the existing classroom document's owner email and requires it to be closed.
+
+If the error continues with the new rules published, confirm that you are signed in using the same verified educator account that created the classroom. In the Firestore Data tab, inspect the classroom's `ownerEmail` and `closed` fields. Do not switch to open access rules.
 
 ## Common issues
 

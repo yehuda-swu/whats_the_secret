@@ -1,12 +1,8 @@
-# Version 4.3: Delete classrooms
+# Version 4.4: Classroom deletion permission fix
 
-* Adds a clear Delete classroom button in the selected educator classroom.
-* Requires the educator to type the matching classroom code to confirm permanent removal.
-* Closes submissions before deleting each presentation and its embedded pictures.
-* Deletes the classroom only after the submissions have been removed.
-* Restricts deletion to the verified educator who created the classroom.
-* Recovers cleanly if a room is removed while another is selected.
-* Updates Firestore rules to allow owner deletion only when submissions are closed.
-* Keeps the existing five questions, image uploads, downloads and educator accounts unchanged.
+* Updates the parent classroom delete rule to check its existing owner email directly and require a closed classroom.
+* Provides a precise message when outdated Firebase rules block final deletion after presentations were removed.
+* Preserves the seven character confirmation and closes submissions before deleting saved work.
+* Keeps the existing educators, pupils, image handling and five question presentation flow.
 
-**Setup action required:** Publish the new `firestore.rules` in Firebase Console after uploading this update to GitHub. It does not publish automatically.
+**Essential:** Publish the included `firestore.rules` in the Firebase Console. GitHub uploads cannot publish database security rules.

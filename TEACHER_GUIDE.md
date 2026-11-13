@@ -69,3 +69,7 @@ Ask the team to check its code and internet connection. If the gallery has not b
 7. If the process is interrupted, the classroom is left closed. Return to it and select **Delete classroom** again.
 
 Only the classroom's original educator can delete it. Each educator still sees only their own classrooms. The updated Firestore security rules in this ZIP **must be published** separately in Firebase Console.
+
+## Deletion troubleshooting
+
+If Firebase denies deletion after closing the classroom, the educator should ask the project administrator to publish the latest `firestore.rules`. The classroom can then be selected and deleted again. Previously submitted work may have already been removed.

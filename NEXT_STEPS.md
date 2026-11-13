@@ -24,3 +24,7 @@ git push origin main
 ```
 
 See `TEST_BEFORE_CLASS.md` for a deletion test. This deletion feature was checked with mocked classroom records, but the live Firebase workflow must be tested after publishing.
+
+## If deleting a classroom shows Access denied
+
+Version 4.2 did not permit parent document deletion. In Firebase Console → Firestore Database → Rules, replace the entire contents with this package's `firestore.rules` and select Publish. Wait for the rules to take effect, refresh the website, and retry. If the classroom is closed, retrying is safe.

@@ -27,3 +27,7 @@ If a test fails, read the troubleshooting section of `README.md`. Do not use the
 6. Open Firebase Firestore and confirm the classroom document and its `submissions` documents have been removed.
 7. Try sending to the old classroom code and confirm the submission is rejected.
 8. If Firebase says permission denied, publish the latest `firestore.rules` from this ZIP and repeat.
+
+## Regression check: failed deletion
+
+With the older Version 4.2 Firestore rules, deletion of the classroom itself is denied, even if closing and removing submissions succeeds. Confirm that the error points to updating Firestore security rules. Publish the new rules and repeat using a test classroom. Verify the classroom and its submission subcollection are gone.

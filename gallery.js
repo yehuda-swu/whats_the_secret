@@ -275,24 +275,29 @@ async function deleteClassroom(event) {
   $('#confirm-delete-room').disabled = true;
   $('#delete-room-code-input').disabled = true;
   const msg = $('#delete-room-feedback');
-  let removed = 0, closedForDeletion = false;
+  let removed = 0, closedForDeletion = false, stage = 'closing';
   try {
     // Close the room before deleting its submissions to prevent new uploads.
     await updateDoc(doc(db, 'classrooms', roomId), {closed: true});
     closedForDeletion = true;
     msg.textContent = 'Classroom closed. Removing presentations…';
     const submissions = collection(db, 'classrooms', roomId, 'submissions');
+    stage = 'checking-submissions';
     while (true) {
       // Using the server avoids accidentally treating cached results as empty.
       const page = await getDocsFromServer(query(submissions, limit(8)));
       if (page.empty) break;
+      stage = 'removing-submissions';
       const batch = writeBatch(db);
       page.docs.forEach(item => batch.delete(item.ref));
       await batch.commit();
       removed += page.size;
       msg.textContent = `Removing presentations… ${removed} removed.`;
+      stage = 'checking-submissions';
     }
     // Never delete the parent before all known submission documents have gone.
+    stage = 'removing-classroom';
+    msg.textContent = 'Presentations removed. Removing classroom…';
     await deleteDoc(doc(db, 'classrooms', roomId));
     pendingDeleteRoom = null;
     $('#delete-room-dialog').close();
@@ -304,9 +309,16 @@ async function deleteClassroom(event) {
     }
     notify(`Classroom deleted. ${removed} presentation${removed===1?'':'s'} removed.`);
   } catch (err) {
-    msg.textContent = closedForDeletion
-      ? `Could not finish deleting this classroom. ${readable(err)} The classroom is closed to new submissions. Check your connection and try again.`
-      : `Could not begin deleting this classroom. ${readable(err)} Please check your connection and try again.`;
+    const denied = String(err?.code || '').includes('permission-denied');
+    if (denied && stage === 'removing-classroom') {
+      msg.textContent = 'Presentations have been removed, but Firebase blocked the final classroom deletion. In Firebase, open Firestore Database → Rules and publish the new firestore.rules from this ZIP. Then try Delete classroom again. The classroom remains closed.';
+    } else if (denied && closedForDeletion) {
+      msg.textContent = 'Firebase blocked the presentation cleanup. In Firebase, open Firestore Database → Rules and publish the new firestore.rules from this ZIP. The classroom remains closed. Try again after publishing.';
+    } else {
+      msg.textContent = closedForDeletion
+        ? `Deletion stopped while ${stage.replaceAll('-', ' ')}. ${readable(err)} The classroom remains closed. Try again when the issue is resolved.`
+        : `Could not begin deleting this classroom. ${readable(err)} Please check your connection and try again.`;
+    }
   } finally {
     deletingRoom = false;
     $('#cancel-delete-room').disabled = false;
