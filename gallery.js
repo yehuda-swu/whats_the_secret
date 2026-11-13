@@ -7,7 +7,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js';
 import {
   getFirestore, collection, doc, setDoc, addDoc, deleteDoc, updateDoc,
-  onSnapshot, query, where, serverTimestamp
+  onSnapshot, query, where, limit, getDocsFromServer, writeBatch, serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js';
 
 const $ = selector => document.querySelector(selector);
@@ -28,6 +28,7 @@ const connection = (message, active = false) => {
 const show = (id, yes) => { const el = $(id); if (el) el.classList.toggle('hidden', !yes); };
 const notify = message => { if (typeof window.toast === 'function') window.toast(message); };
 let auth, db, currentRoom = '', unsubscribeRooms = null, unsubscribeSubmissions = null, rooms = [], roomSubmissions = [], authLoaded = false;
+let deletingRoom = false, pendingDeleteRoom = null;
 let loadAuth;
 const authReady = new Promise(resolve => { loadAuth = resolve; });
 
@@ -157,6 +158,12 @@ function watchRooms(email) {
   const q = query(collection(db,'classrooms'), where('ownerEmail','==',email));
   unsubscribeRooms = onSnapshot(q, snap => {
     rooms = snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    // When a classroom is deleted, choose another rather than retaining a stale selection.
+    if (currentRoom && !rooms.some(r=>r.id===currentRoom)) {
+      unsubscribeSubmissions?.(); unsubscribeSubmissions = null;
+      currentRoom = ''; roomSubmissions = [];
+      show('#selected-classroom', false);
+    }
     renderRooms();
     if (currentRoom && rooms.some(r=>r.id===currentRoom)) selectRoom(currentRoom);
   }, err => { $('#rooms-list').textContent = readable(err); });
@@ -225,6 +232,87 @@ async function toggleClosed() {
   const room = rooms.find(r=>r.id===currentRoom); if (!room) return;
   try { await updateDoc(doc(db,'classrooms',currentRoom),{closed:!room.closed}); notify(room.closed?'Classroom reopened.':'New submissions closed.'); }
   catch (err) { notify(readable(err)); }
+}
+
+// Classroom removal is deliberately restricted to the verified educator who owns it.
+// Firestore does not cascade document deletion to its subcollections, so remove
+// submissions first, in small batches, then remove the empty classroom document.
+function openDeleteRoomDialog() {
+  const user = auth?.currentUser;
+  const room = rooms.find(r => r.id === currentRoom);
+  if (deletingRoom || !educator(user) || !room || room.ownerEmail !== user.email.toLowerCase()) return;
+  pendingDeleteRoom = room.id;
+  $('#delete-room-name').textContent = room.name;
+  $('#delete-room-code').textContent = room.id;
+  $('#delete-room-code-input').value = '';
+  $('#delete-room-feedback').textContent = '';
+  $('#confirm-delete-room').disabled = true;
+  $('#delete-room-dialog').showModal();
+  $('#delete-room-code-input').focus();
+}
+function cancelDeleteRoom() {
+  if (deletingRoom) return;
+  pendingDeleteRoom = null;
+  $('#delete-room-dialog').close();
+}
+function validateRoomDeleteCode() {
+  const input = $('#delete-room-code-input');
+  input.value = input.value.trim().toUpperCase().replace(/[^A-Z2-9]/g,'').slice(0,7);
+  $('#confirm-delete-room').disabled = deletingRoom || !pendingDeleteRoom || input.value !== pendingDeleteRoom;
+}
+async function deleteClassroom(event) {
+  event.preventDefault();
+  if (deletingRoom || !pendingDeleteRoom || $('#delete-room-code-input').value !== pendingDeleteRoom) return;
+  const roomId = pendingDeleteRoom;
+  const user = auth?.currentUser;
+  const room = rooms.find(r => r.id === roomId);
+  if (!educator(user) || !room || room.ownerEmail !== user.email.toLowerCase()) {
+    $('#delete-room-feedback').textContent = 'You can only delete classrooms that you created.';
+    return;
+  }
+  deletingRoom = true;
+  $('#cancel-delete-room').disabled = true;
+  $('#confirm-delete-room').disabled = true;
+  $('#delete-room-code-input').disabled = true;
+  const msg = $('#delete-room-feedback');
+  let removed = 0, closedForDeletion = false;
+  try {
+    // Close the room before deleting its submissions to prevent new uploads.
+    await updateDoc(doc(db, 'classrooms', roomId), {closed: true});
+    closedForDeletion = true;
+    msg.textContent = 'Classroom closed. Removing presentations…';
+    const submissions = collection(db, 'classrooms', roomId, 'submissions');
+    while (true) {
+      // Using the server avoids accidentally treating cached results as empty.
+      const page = await getDocsFromServer(query(submissions, limit(8)));
+      if (page.empty) break;
+      const batch = writeBatch(db);
+      page.docs.forEach(item => batch.delete(item.ref));
+      await batch.commit();
+      removed += page.size;
+      msg.textContent = `Removing presentations… ${removed} removed.`;
+    }
+    // Never delete the parent before all known submission documents have gone.
+    await deleteDoc(doc(db, 'classrooms', roomId));
+    pendingDeleteRoom = null;
+    $('#delete-room-dialog').close();
+    if (currentRoom === roomId) {
+      unsubscribeSubmissions?.(); unsubscribeSubmissions = null;
+      currentRoom = ''; roomSubmissions = [];
+      show('#selected-classroom', false);
+      $('#submission-count').textContent = '0';
+    }
+    notify(`Classroom deleted. ${removed} presentation${removed===1?'':'s'} removed.`);
+  } catch (err) {
+    msg.textContent = closedForDeletion
+      ? `Could not finish deleting this classroom. ${readable(err)} The classroom is closed to new submissions. Check your connection and try again.`
+      : `Could not begin deleting this classroom. ${readable(err)} Please check your connection and try again.`;
+  } finally {
+    deletingRoom = false;
+    $('#cancel-delete-room').disabled = false;
+    $('#delete-room-code-input').disabled = false;
+    validateRoomDeleteCode();
+  }
 }
 async function compressForGallery(src) {
   if (!src?.startsWith('data:image/')) return src || '';
@@ -300,3 +388,12 @@ $('#new-classroom-form').addEventListener('submit',createRoom);
 $('#copy-class-code').addEventListener('click',()=>{if(currentRoom){navigator.clipboard?.writeText(currentRoom).then(()=>notify('Classroom code copied.')).catch(()=>notify('Classroom code: '+currentRoom));}});
 $('#close-classroom').addEventListener('click',toggleClosed);
 $('#refresh-gallery').addEventListener('click',()=>{if(auth?.currentUser && educator(auth.currentUser)) {stopListeners();watchRooms(auth.currentUser.email.toLowerCase());}});
+
+$('#delete-classroom').addEventListener('click', openDeleteRoomDialog);
+$('#cancel-delete-room').addEventListener('click', cancelDeleteRoom);
+$('#delete-room-code-input').addEventListener('input', validateRoomDeleteCode);
+$('#delete-room-form').addEventListener('submit', deleteClassroom);
+$('#delete-room-dialog').addEventListener('cancel', event => {
+  if (deletingRoom) event.preventDefault();
+  else pendingDeleteRoom = null;
+});

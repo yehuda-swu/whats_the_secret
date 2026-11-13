@@ -214,3 +214,23 @@ button,a,input,textarea,summary{touch-action:manipulation}
 .rooms-list{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0 24px}.room-tile{border:2px solid #c4dce5;background:#fff;color:#103d55;padding:16px 19px;border-radius:12px;text-align:left;cursor:pointer;min-width:190px}.room-tile strong{display:block;font-size:19px}.room-tile small{display:block;font-size:15px;margin-top:7px}.room-tile.selected{background:#e8f9fd;border-color:#137c9c;box-shadow:0 0 0 2px #137c9c40}.room-tile .room-tile-code{font-weight:900;letter-spacing:2px;color:#167f9a}
 .selected-classroom{border-top:2px solid #e1edf1;padding-top:27px}.selected-room-top{background:linear-gradient(125deg,#e8f9fc,#f5fbfd);border-radius:18px;padding:25px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}.room-code{font-size:clamp(38px,5vw,64px);font-weight:950;letter-spacing:7px;color:#094665;margin:8px 0 12px}.selected-room-actions{display:flex;gap:10px;flex-wrap:wrap}.selected-room-actions button{min-height:54px}.gallery-results-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:28px}.gallery-results-head h3{font-size:27px}.gallery-results-head h3 span{font-size:19px;padding:3px 10px;border-radius:22px;background:#dbf0f4}.gallery-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:16px}.gallery-card{background:#f5fafc;border:1px solid #d6eaf0;border-radius:16px;padding:22px;min-width:0}.gallery-card h4{font-size:23px;margin:12px 0 7px;overflow-wrap:anywhere}.gallery-card p{font-size:17px;line-height:1.4;margin:6px 0}.gallery-card .gallery-card-top{font-weight:800;color:#137a9a;font-size:15px;letter-spacing:.06em}.gallery-card-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.gallery-card-actions .btn{font-size:17px;min-height:48px;padding:11px 16px}
 @media(max-width:760px){.submit-panel{padding:22px 18px}.submit-fields{grid-template-columns:1fr}.submit-fields .btn{width:100%}.gallery-shell{padding:22px 17px}.room-creator{flex-direction:column}.room-creator button{width:100%}.gallery-results-head{align-items:start;flex-direction:column}.gallery-results-head .btn{width:100%}.selected-room-actions{width:100%}.selected-room-actions .btn{flex:1}.room-code{letter-spacing:3px}.gallery-list{grid-template-columns:1fr}}
+
+/* Permanent classroom deletion: large, clearly distinguished controls. */
+.btn.danger{background:#fff5f5;color:#93252e;border:2px solid #bd646c}
+.btn.danger:hover{background:#ffe7e8}
+.btn.danger-solid{background:#9b2431;color:#fff;border-color:#9b2431}
+.btn.danger-solid:hover{background:#781925;color:#fff}
+.btn.danger-solid:disabled{background:#e6e8eb;color:#5a6570;border-color:#bec7ce;cursor:not-allowed;box-shadow:none}
+.delete-room-dialog{border:2px solid #cc7980;border-radius:19px;padding:33px;background:#fff;color:#122f44;max-height:min(88vh,850px);overflow:auto}
+.delete-room-dialog::backdrop{background:rgba(7,25,43,.7)}
+.delete-room-dialog h2{font-size:clamp(28px,4vw,38px);line-height:1.2;color:#742532}
+.delete-room-dialog p:not(.eyebrow){font-size:20px;line-height:1.55}
+.delete-room-identity{border:2px solid #efd2d5;border-radius:12px;background:#fff7f8;padding:15px 17px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.delete-room-identity strong{font-size:21px}
+.delete-room-identity span{font-weight:850;letter-spacing:3px;font-size:24px}
+.delete-room-dialog label{display:block;font-size:20px;font-weight:800;margin:21px 0 7px}
+.delete-room-dialog input{font-size:23px;letter-spacing:2px;font-weight:750;width:100%;min-height:61px;padding:13px 15px;border:2px solid #9bafb9;border-radius:9px;text-transform:uppercase}
+.delete-room-feedback{min-height:28px;color:#8b2b35;font-weight:700}
+.delete-room-buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.delete-room-buttons .btn{font-size:19px;min-height:60px}
+@media(max-width:700px){.delete-room-dialog{padding:23px 18px}.delete-room-buttons{display:grid;grid-template-columns:1fr}.delete-room-buttons .btn{width:100%}.selected-room-actions .btn.danger{flex-basis:100%}}

@@ -41,7 +41,7 @@
  <div id="gallery-account" class="gallery-account hidden"><div class="educator-account"><span id="signed-in-as"></span><button type="button" id="educator-signout" class="btn secondary">Sign out</button></div>
  <form id="new-classroom-form" class="new-room"><div><h3>Create a classroom</h3><p>Give the class a name. Share the code on your projector.</p></div><label for="classroom-name">Class name</label><div class="room-creator"><input id="classroom-name" maxlength="65" placeholder="e.g. Year 12 Explore" required><button class="btn primary" type="submit" id="create-room">Create classroom</button></div></form>
  <div class="rooms-area"><h3>Your classrooms</h3><div id="rooms-list" class="rooms-list" role="list"></div></div>
- <div id="selected-classroom" class="selected-classroom hidden"><div class="selected-room-top"><div><span class="eyebrow dark">SHOW THIS CODE TO PUPILS</span><div id="selected-room-code" class="room-code">XXXXXXX</div><h3 id="selected-room-title"></h3><p id="selected-room-meta"></p></div><div class="selected-room-actions"><button type="button" id="copy-class-code" class="btn secondary">Copy code</button><button type="button" id="close-classroom" class="btn secondary">Close submissions</button></div></div>
+ <div id="selected-classroom" class="selected-classroom hidden"><div class="selected-room-top"><div><span class="eyebrow dark">SHOW THIS CODE TO PUPILS</span><div id="selected-room-code" class="room-code">XXXXXXX</div><h3 id="selected-room-title"></h3><p id="selected-room-meta"></p></div><div class="selected-room-actions"><button type="button" id="copy-class-code" class="btn secondary">Copy code</button><button type="button" id="close-classroom" class="btn secondary">Close submissions</button><button type="button" id="delete-classroom" class="btn danger">Delete classroom</button></div></div>
  <div class="gallery-results-head"><div><h3>Submitted presentations <span id="submission-count">0</span></h3><p>New submissions appear automatically. Select Present to display the five slides.</p></div><button type="button" id="refresh-gallery" class="btn secondary">Refresh</button></div>
  <div id="gallery-list" class="gallery-list" aria-live="polite"><p class="muted">No presentations yet. Share your classroom code with pupils.</p></div></div>
  </div>
@@ -50,6 +50,18 @@
 </div></section>
 </main>
 <footer class="site-footer"><div class="wrap"><span>STANDWITHUS UK · EXPLORE</span><span>WHAT'S THE SECRET? · THE INNOVATION CHALLENGE</span></div></footer>
+<dialog id="delete-room-dialog" class="small-dialog delete-room-dialog" aria-labelledby="delete-room-title" aria-describedby="delete-room-description">
+ <form id="delete-room-form">
+  <p class="eyebrow dark">CLASSROOM MANAGEMENT</p>
+  <h2 id="delete-room-title">Delete this classroom?</h2>
+  <p id="delete-room-description">This permanently deletes the classroom and all its submitted presentations, including pictures. You cannot undo this action. Download anything you want to keep first.</p>
+  <p class="delete-room-identity"><strong id="delete-room-name"></strong><span id="delete-room-code"></span></p>
+  <label for="delete-room-code-input">To confirm, enter the classroom code shown above</label>
+  <input id="delete-room-code-input" type="text" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Enter classroom code" required>
+  <p class="delete-room-feedback" id="delete-room-feedback" role="status" aria-live="polite"></p>
+  <div class="delete-room-buttons"><button type="button" class="btn secondary" id="cancel-delete-room">Keep classroom</button><button type="submit" class="btn danger danger-solid" id="confirm-delete-room" disabled>Delete classroom and presentations</button></div>
+ </form>
+</dialog>
 <dialog id="start-dialog" class="small-dialog"><form id="start-form" method="dialog"><button type="button" class="close-dialog" data-close="start-dialog" aria-label="Close">×</button><p class="eyebrow dark">START YOUR RESEARCH</p><h2 id="start-title">Your topic</h2><p id="start-description"></p><label for="team-name">Team name</label><input required maxlength="65" id="team-name" placeholder="e.g. The Innovators"><p class="help">Your group works on one device. We save your answers automatically.</p><button type="submit" class="btn primary full">Start answering →</button></form></dialog>
 <dialog id="research-dialog" class="research-dialog"><div class="reader-header"><div><p class="eyebrow dark">YOUR RESEARCH PACK</p><h2>Investigate the evidence</h2></div><button type="button" class="close-dialog reader-close" data-close="research-dialog" aria-label="Close">×</button></div><div class="reader-layout"><nav id="research-nav" aria-label="Research topics"></nav><article id="research-text"></article></div></dialog>
 <script src="research.js"></script><script src="script.js"></script><script src="firebase-config.js"></script><script src="gallery-loader.js"></script>

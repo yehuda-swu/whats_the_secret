@@ -16,3 +16,14 @@ Do this once after configuring Firebase and updating GitHub Pages.
 12. Remove the test submission when you are finished.
 
 If a test fails, read the troubleshooting section of `README.md`. Do not use the gallery with pupils until the entire sequence passes. Pupils can still use **Download a copy** as a backup.
+
+## Classroom deletion test
+
+1. Create a second practice classroom and submit a sample presentation with a picture.
+2. Download it if you would like to keep a copy.
+3. Select **Delete classroom** and verify that the confirmation stays disabled until you enter the matching classroom code.
+4. Confirm deletion and keep the page open until the success message appears.
+5. Check that the room disappears from the educator gallery.
+6. Open Firebase Firestore and confirm the classroom document and its `submissions` documents have been removed.
+7. Try sending to the old classroom code and confirm the submission is rejected.
+8. If Firebase says permission denied, publish the latest `firestore.rules` from this ZIP and repeat.

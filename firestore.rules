@@ -58,7 +58,7 @@ service cloud.firestore {
       allow update: if ownsRoom(roomId)
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['closed'])
         && request.resource.data.closed is bool;
-      allow delete: if false;
+      allow delete: if ownsRoom(roomId) && resource.data.closed == true;
       match /submissions/{submissionId} {
         allow get, list: if ownsRoom(roomId);
         allow create: if roomOpen(roomId) && validSubmission();

@@ -57,3 +57,15 @@ Open the gallery, choose each group and select **Present**. Use the arrow keys t
 Ask the team to check its code and internet connection. If the gallery has not been configured, or the school network blocks Firebase, the team can still **Download a copy** containing the five slides and uploaded pictures. It will open in any modern browser and can be attached to an email manually.
 
 **Important:** The Email Eden, Email Eliana and Email Yehuda buttons prepare an email but cannot attach the presentation automatically. Direct gallery submission is the recommended method.
+
+## Removing an old classroom
+
+1. Sign in to the **For teachers** gallery as the educator who created the classroom.
+2. Under **Your classrooms**, select the classroom to remove.
+3. Download any presentations you want to keep. **Deletion is permanent.**
+4. Click **Delete classroom** beside **Close submissions**.
+5. Enter the classroom's seven character code and confirm.
+6. Keep the page open while the system closes submissions, deletes presentation files and pictures from Firestore and removes the classroom.
+7. If the process is interrupted, the classroom is left closed. Return to it and select **Delete classroom** again.
+
+Only the classroom's original educator can delete it. Each educator still sees only their own classrooms. The updated Firestore security rules in this ZIP **must be published** separately in Firebase Console.

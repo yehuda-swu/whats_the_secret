@@ -1,30 +1,26 @@
-# Final connection steps
+# Version 4.3: Publish classroom deletion
 
-The Firebase web configuration has been added to `firebase-config.js` for the existing **Explore Classroom Gallery** project.
+The Firebase web configuration is already included. The existing Explore pupil activity and all three educator accounts remain unchanged.
 
-## Upload the activity to GitHub
+## Publish the update
 
-1. Extract the supplied ZIP file on your computer.
-2. Open the existing `whats_the_secret` repository in GitHub.
-3. Upload **the contents** of the extracted folder into the repository root. Include `index.html`, `firebase-config.js`, `gallery.js`, `gallery-loader.js`, `script.js`, `style.css`, `research.js` and `assets/`. Replace the existing files when prompted.
-4. Use commit message: `Connect Firebase classroom gallery and add educator access`.
-5. Open your published website and refresh it after GitHub Pages finishes deploying.
+1. Extract the ZIP and upload its contents to the existing GitHub repository `whats_the_secret`, replacing matching files. Keep the `assets` folder as a folder.
+2. In [Firebase Console](https://console.firebase.google.com/), open **Explore Classroom Gallery → Firestore Database → Rules**.
+3. Copy the complete contents of the **new** `firestore.rules` file included in this ZIP, replace the existing rules and select **Publish**. The GitHub upload cannot publish Firebase rules for you.
+4. Open the published activity, select **For teachers** and sign in to the verified account that created the practice classroom.
+5. Select that classroom and click **Delete classroom**. Enter its seven character code to confirm.
+6. Keep the page open until deletion finishes. The classroom and all submitted presentations should disappear.
 
-## Before the class: educator test
+**Important:** Only the educator who created a classroom can delete it. Deletion also removes all the classroom's pupil submissions and pictures. Download any work you want to retain first.
 
-1. In Firebase Authentication, confirm **Email/Password** and **Anonymous** sign in are enabled. Check that `yehuda-swu.github.io` is an Authorised domain.
-2. In Firestore Database → Rules, confirm the rules from this ZIP are published. The latest rules should mention all three educator addresses.
-3. Open the website and click **For teachers**. Register or sign in with `edeni@standwithus.com`, `egarfunkel@standwithus.com`, or `yehuda@standwithus.com`. Use the account's own password and follow the email verification message.
-4. Create a classroom. Copy its seven character code.
-5. Open the website in a separate private browsing window. As a pupil, answer all five questions and upload a small test picture. Enter the code and select **Submit presentation**.
-6. Check that the presentation appears in the correct educator gallery, and select **Present** to confirm the image loads.
-7. Test **Download**. Finally, close the classroom and check that further submissions are no longer accepted.
+Suggested commit message: `Add classroom deletion and presentation cleanup`
 
-## Important notes
+If using Git locally:
 
-* GitHub Pages hosts the site. Firebase stores the submitted presentations. Uploading `firestore.rules` to GitHub does not publish Firestore rules.
-* The Firebase web configuration identifies your project and is safe to include in a public website. It is not a private administrator credential.
-* A visible **Online gallery connected** label confirms the Firebase SDK initialised, not that a full classroom submission has been tested. Complete the test above.
-* Pupils do not need accounts. Group names should not identify individual pupils.
-* Only the educator who created a classroom can access its submissions.
-* If you see a permission error, check the classroom code, whether the classroom is still open, the security rules and authorised domains.
+```bash
+git add .
+git commit -m "Add classroom deletion and presentation cleanup"
+git push origin main
+```
+
+See `TEST_BEFORE_CLASS.md` for a deletion test. This deletion feature was checked with mocked classroom records, but the live Firebase workflow must be tested after publishing.

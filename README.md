@@ -1,14 +1,14 @@
 # What's the Secret? | Explore Classroom Gallery
 
-This version keeps the simple five question pupil activity and adds an educator classroom gallery. Groups can submit answers and uploaded images directly from their device. Eden, Eliana and Yehuda can see incoming work in a private gallery, present the slides, download copies and close submissions after the session.
+Version 4.3 keeps the simple five question pupil activity and adds educator classroom deletion to the existing gallery. Groups can submit answers and uploaded images directly from their device. Eden, Eliana and Yehuda can see incoming work in a private gallery, present the slides, download copies, close submissions after the session and permanently delete an old classroom together with its presentations.
 
-**Firebase web settings have been inserted for the Explore Classroom Gallery project.** Authentication and Firestore rules still need to be enabled and published in Firebase (you have already completed those steps). Uploading this ZIP to GitHub Pages is the next step. Live submissions must still be tested.
+**Firebase web settings have been inserted for the Explore Classroom Gallery project.** Authentication and Firestore rules still need to be enabled and published in Firebase (you have already completed those steps). Upload the updated files to GitHub Pages and publish the revised Firestore rules. The new deletion flow must be tested using a practice classroom.
 
 ## Updating from the previous gallery version
 
-1. Replace `gallery.js` in the GitHub Pages repository with this new version. You can upload the full ZIP instead, preserving the folder structure and any existing Firebase configuration.
+1. Upload the full contents of this ZIP to your existing GitHub Pages repository, replacing matching files. The Firebase configuration is already included.
 2. Open **Firebase Console → Firestore Database → Rules** and publish the *updated* `firestore.rules` file. Uploading that rules file to GitHub does **not** publish database rules.
-3. Yehuda can then open **For teachers → First time? Create account**, using `yehuda@standwithus.com`, choose a password and verify his email before signing in. If his account is already in Firebase Authentication, use **Sign in** or **Reset password** instead.
+3. Existing educator accounts do not need to register again. Sign in as usual.
 4. Each educator sees only the classrooms they personally created. Adding Yehuda does not grant access to Eden's or Eliana's existing classrooms.
 
 **This version includes your configured `firebase-config.js`.** Do not replace it with the earlier blank version.
@@ -20,7 +20,8 @@ This version keeps the simple five question pupil activity and adds an educator 
 3. The team enters the classroom code and selects **Submit presentation**. No pupil sign in or email address is needed.
 4. The Educator opens **For teachers**, selects their classroom and sees submissions appear automatically.
 5. Select **Present** to display the slides, **Download** to save a presentation, or **Remove** to delete an incorrect submission.
-6. Pupils retain **Preview**, **Download a copy**, **Save editable project** and optional manual email buttons.
+6. In **Your classrooms**, select a classroom and choose **Delete classroom** to permanently erase its presentations and then the classroom itself. Enter its seven character code to confirm. A classroom can only be deleted by its creator.
+7. Pupils retain **Preview**, **Download a copy**, **Save editable project** and optional manual email buttons.
 
 ## One time setup: Firebase (required for live submissions)
 
@@ -30,7 +31,7 @@ This version uses Google's Firebase Authentication and Cloud Firestore. You do n
 
 1. Visit https://console.firebase.google.com/ and create a Firebase project called, for example, `Explore Classroom Gallery`.
 2. Add a **Web app** in Project settings. Copy the *Firebase configuration* object shown in its setup page. You need the `apiKey`, `authDomain`, `projectId` and `appId` values. Do not copy credentials from a service account, private key or Firebase Admin SDK.
-3. For this configured version, `firebase-config.js` already contains your web app configuration. No editing is necessary. Keep private admin credentials out of GitHub.
+3. For this version, `firebase-config.js` already contains your web app configuration. No editing is necessary. Keep private admin credentials out of GitHub.
 
 Example layout (the letters below are deliberately invalid placeholders):
 
@@ -65,7 +66,9 @@ These email addresses are also enforced by database rules; the interface alone i
 3. Replace the existing rules with the **entire contents** of the supplied `firestore.rules` file.
 4. Select **Publish**. Check that the rules have been published successfully.
 
-The rules enforce these controls: only verified educator accounts can read classroom work; educators can access only their own classrooms; anonymous pupils can create submissions only when they know an open classroom code; pupils cannot list, read or edit other teams' work; and educator accounts can remove individual submissions.
+The rules enforce these controls: only verified educator accounts can read classroom work; educators can access only their own classrooms; anonymous pupils can create submissions only when they know an open classroom code; pupils cannot list, read or edit other teams' work; and educator accounts can remove individual submissions or delete their own classrooms once closed.
+
+**Important:** This update changes the Firestore security rules. Publish the new `firestore.rules` in Firebase Console before using Delete classroom. GitHub does not automatically apply the rules. The activity closes a room, removes its submissions in small batches and then deletes the classroom. Do not close the browser while deletion is underway. If deletion is interrupted, open the classroom again and retry.
 
 **Do not replace the supplied rules with `allow read, write: if true`.** That would expose pupils' work.
 
@@ -80,14 +83,14 @@ The rules enforce these controls: only verified educator accounts can read class
 Suggested commit message:
 
 ```text
-Authorise Yehuda as an educator in classroom gallery
+Add secure classroom deletion with presentation cleanup
 ```
 
 If using Git locally:
 
 ```bash
 git add .
-git commit -m "Authorise Yehuda as an educator in classroom gallery"
+git commit -m "Add secure classroom deletion with presentation cleanup"
 git push origin main
 ```
 
@@ -111,7 +114,7 @@ If the branch is not `main`, use your existing branch name.
 * Ask pupils to choose a **group name**, not a full legal name. Avoid personal or sensitive information in answers, captions and pictures.
 * Submitted answers and resized uploaded images are stored in your Firebase project's Cloud Firestore. They do not become public websites. A person with a classroom code can submit a presentation while the room is open, but cannot see others' work.
 * Firebase user credentials and database management remain under the account that creates the Firebase project. Use an organisation controlled Firebase project and align its data location, retention, access and privacy notices with StandWithUs UK policy.
-* Educators should remove submissions when no longer needed. Removing a submission from the gallery deletes its stored document. Closing a classroom stops new submissions but does not delete existing work. There is no automated retention period in this version.
+* Educators should remove submissions when no longer needed. Removing a submission from the gallery deletes its stored document. Closing a classroom stops new submissions but does not delete existing work. **Delete classroom** permanently erases the classroom and its submitted presentations, including images. Download anything you wish to keep before deleting. There is no automated retention period in this version.
 * The supplied research extracts have not been independently verified. Encourage students to check claims and credit sources and pictures.
 
 ## Files
@@ -126,4 +129,4 @@ If the branch is not `main`, use your existing branch name.
 * `TEACHER_GUIDE.md`: lesson instructions
 * `assets/`: supplied logos and classroom visuals
 
-No Firebase administrator key or secret is included. The Firebase web configuration is in place, but the online workflow must be tested once the GitHub Pages site has updated.
+No Firebase administrator key or secret is included. The Firebase web configuration is in place. Test classroom deletion after the GitHub Pages site and Firebase rules have updated.
